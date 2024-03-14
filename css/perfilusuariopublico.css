@@ -1,0 +1,11 @@
+.cardy {
+    width: 100%;
+    max-width: 300px; /* Ancho máximo de la tarjeta */
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    max-width: 512px; /* Ancho máximo de la imagen */
+    max-height: 512px; /* Altura máxima de la imagen */
+  }
