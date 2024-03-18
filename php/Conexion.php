@@ -9,7 +9,7 @@ class Conectar{
                 $servename = "localhost";
                 $username = "root";
                 $password = "";
-                $database = "ieuw";
+                $database = "bdm";
 
                 $conexion = new mysqli($servename, $username, $password, $database);
             }
