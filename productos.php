@@ -54,7 +54,7 @@ col-sm-12
 
     </tr>
     <tr>
-        <td><button class = "btn btn-outline-success text-decoration-none"><a href="nuevoproducto.php "> Agregar</a></button></td>
+        <td><button class = "btn btn-outline-success"><a href="nuevoproducto.php" style="text-decoration: none;"> Agregar</a></button></td>
 
     </tr>
 

@@ -12,7 +12,7 @@ if ($conexion->connect_error) {
 }
 
 if($Correo != null && $Contrasena != null){
-    $query = "SELECT Correo, NameUser, Contrasena FROM usuarios WHERE (Correo = '$Correo')
+    $query = "SELECT Correo, NombreUsuario, Contrasena FROM usuarios WHERE (Correo = '$Correo')
     AND Contrasena = '$Contrasena'";
 
 }
@@ -23,7 +23,7 @@ $Result = $conexion->query($query);
         session_start();
 
         while($row = mysqli_fetch_array($Result)){
-           $_SESSION['Usuario'] = $row['NameUser'];
+           $_SESSION['Usuario'] = $row[' NombreUsuario'];
         }
 
         header("Location:../inicio.php");
