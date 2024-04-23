@@ -34,7 +34,7 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="img/weon.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>Joensah</h4>
+                      <h4>  <?php echo $_SESSION['Usuario'] ?> </h4>
                       <p class="text-secondary mb-1">Vendedor</p>
                       <p>
                       <p class="text-muted font-size-sm">
@@ -88,7 +88,7 @@
                       <h6 class="mb-0">Tipo de Perfil</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    Vendedor
+                       Vendedor
                     </div>
                   </div>
                   <hr>
@@ -98,7 +98,7 @@
                   <h6 class="mb-0">Nombre Completo</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      Jorge Enrique Salas Hernández
+                     <?php echo $_SESSION['Nombre'] ?> 
                     </div>
                   </div>
                   <hr>
@@ -108,7 +108,7 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      joe.salas.32@gmail.com
+                    <?php echo $_SESSION['Correo'] ?> 
                     </div>
                   </div>
                   <hr>
@@ -118,7 +118,7 @@
                       <h6 class="mb-0">Fecha de Nacimiento</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      27-10-1999
+                    <?php echo $_SESSION['Fecha'] ?> 
                     </div>
                   </div>
                   <hr>
@@ -128,7 +128,7 @@
                       <h6 class="mb-0">Sexo</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    Masculino
+                    <?php echo $_SESSION['Sexo'] ?> 
                     </div>
                   </div>
                   <hr>

@@ -9,7 +9,8 @@ formulario.addEventListener("submit", function(event){
     var user = document.getElementById("username");
     var pass = document.getElementById("password");
     var roltype = document.getElementById("role");
-    var image = document.getElementById("avatar");
+    var privateed = document.getElementById("private");
+    var image =  document.getElementById("avatar");
     var name = document.getElementById("fullname");
     var dateb = document.getElementById("birthdate");
     var sexo = document.getElementById("gender");
@@ -17,13 +18,27 @@ formulario.addEventListener("submit", function(event){
     var erroru = document.getElementById("erroruser");
     var errorleft = document.getElementById("dataleft");
 
+            // Crear un objeto de tipo FileReader
+        var reader = new FileReader();
+
+        // Definir una función que se ejecutará cuando la imagen se cargue correctamente
+        reader.onloadend = function() {
+            var base64data = reader.result;
+            image = base64data;
+            // Aquí puedes enviar la imagen en formato base64 a tu servidor a través de una petición AJAX o almacenarla temporalmente en una variable para enviarla posteriormente.
+        }
+
+        // Leer el contenido de la imagen como un objeto Blob
+        reader.readAsDataURL(image.files[0]);
+
    
       var dataObject = {
         correo: email.value,
         user: user.value,
         pass: pass.value, 
         rol: roltype.value,
-        imagen:image.value, 
+        private: privateed.value,
+        imagen: image.value, 
         nombre:name.value, 
         fecha:dateb.value, 
         genre:sexo.value
@@ -64,24 +79,24 @@ else{
 
 
 if (okvalidator ==3){
-   // agregarDB(email, user, pass,roltype,image,name,dateb,sexo);
+   
    $.ajax({
     method: "POST",
     url: "php/ABCUsuario.php",
-    contentType: "application/json", // Indicar que se está enviando JSON
+    contentType: "application/json", 
     dataType:"json",
     data: jsonData,
     success:  function(response) {
-        // Manejar la respuesta del servidor si es necesario
+    
         alert("Registro correcto");
         console.log(response);
     },
     error: function(error) {
-        // Manejar errores si es necesario
+       
         console.error("Error en la solicitud AJAX:", error);
     }
 });
- //   alert("Registrado con exito");
+
 }
 
 

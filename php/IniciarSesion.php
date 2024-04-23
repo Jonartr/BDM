@@ -12,8 +12,14 @@ if ($conexion->connect_error) {
 }
 
 if($Correo != null && $Contrasena != null){
-    $query = "SELECT Correo, NombreUsuario, Contrasena FROM usuarios WHERE (Correo = '$Correo')
-    AND Contrasena = '$Contrasena'";
+    $query = "SELECT usuarios.Correo, usuarios.NombreUsuario, usuarios.Contrasena, usuarios.Rol, usuarios.Imagen, 
+    datospersonales.Nombre, datospersonales.FechaNacimiento, 
+    datospersonales.Sexo 
+    FROM usuarios 
+    INNER JOIN 
+    datospersonales ON usuarios.Correo = datospersonales.Correo
+    WHERE (usuarios.Correo = '$Correo')
+    AND usuarios.Contrasena = '$Contrasena'";
 
 }
 
@@ -21,10 +27,28 @@ $Result = $conexion->query($query);
 
     if ($Result->num_rows >0){
         session_start();
-
+        $Rol = 0;
         while($row = mysqli_fetch_array($Result)){
-           $_SESSION['Usuario'] = $row[' NombreUsuario'];
+          $_SESSION['Correo'] = $row['Correo']; 
+           $_SESSION['Usuario'] = $row['NombreUsuario'];
+           $_SESSION['Foto'] = $row['Imagen'];     
+           $_SESSION['Rol'] = $row['Rol'];
+           $_SESSION['Nombre'] = $row['Nombre'];
+           $_SESSION['Fecha'] = $row['FechaNacimiento'];
+           $_SESSION['Privacidad'] = $row['Privacidad'];
+           $Sexo = $row['Sexo'];
+
+           if ($Sexo == 1){
+            $_SESSION['Sexo'] = 'Masculino';
+           }
+           else{
+            $_SESSION['Sexo'] = 'Femenino';
+           }
+
+           
+
         }
+
 
         header("Location:../inicio.php");
     }

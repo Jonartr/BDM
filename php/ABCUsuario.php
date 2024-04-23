@@ -22,14 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Nombre = $data['nombre'];
         $Fecha = $data['fecha'];
         $Genero = $data['genre'];
+        $Private = $data['private'];
         $Roltype = 1;
         $Genre = 1;
-        if($Rol == "Usuario"){
-            $Roltype = 1;
-        }
-        else {
-            $Roltype = 2;
-        }
 
         if($Genero == "male"){
              $Genre = 1;   
@@ -38,17 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         else{
             $Genre = 2;
         }
-            
 
-       $Query = "INSERT INTO usuarios VALUES 
-       ('$Correo','$Usuario','$Contra','$Roltype','$Imagen', '$Nombre','$Fecha', '$Genre','$Fecha','$Fecha',1)";     
+        //Conversion de imagen
+        $newimage =   base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $Imagen));   
 
+
+        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Roltype', '$newimage', '$Nombre', '$Fecha','$Genre', 1,' $Private')";
+
+       /*$Query = "INSERT INTO usuarios VALUES 
+       ('$Correo','$Usuario','$Contra', '$Roltype', '$Imagen', now(),null,1)";
        $conexion->query($Query);
 
+       $Query = "INSERT INTO datospersonales VALUES ('$Nombre','$Fecha','$Genre','$Correo')";*/
+
+        $conexion->query($Query);
     }
 
 
 }
 
-
+    $conexion->close();
 ?>
