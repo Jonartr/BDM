@@ -23,22 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Fecha = $data['fecha'];
         $Genero = $data['genre'];
         $Private = $data['private'];
-        $Roltype = 1;
-        $Genre = 1;
-
-        if($Genero == "male"){
-             $Genre = 1;   
-
-        }
-        else{
-            $Genre = 2;
-        }
 
         //Conversion de imagen
         $newimage =   base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $Imagen));   
 
 
-        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Roltype', '$newimage', '$Nombre', '$Fecha','$Genre', 1,' $Private')";
+        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Rol', '$newimage', '$Nombre', '$Fecha','$Genero', 1,' $Private')";
 
        /*$Query = "INSERT INTO usuarios VALUES 
        ('$Correo','$Usuario','$Contra', '$Roltype', '$Imagen', now(),null,1)";

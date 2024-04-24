@@ -14,34 +14,16 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6 col-xl-9">
-        <h2 class="text-center mb-4">Registro de Usuario</h2>
+        <h2 class="text-center mb-4">Editar datos de perfil</h2>
         <form id="Registro">
 
           <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico*</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="username" class="form-label">Nombre de usuario*</label>
-            <input type="text" class="form-control" id="username" name="username" minlength="3" required>
-            <p id = "erroruser" style="color:red"></p>
-          </div>
-
-          <div class="mb-3">
             <label for="password" class="form-label">Contraseña*</label>
-            <input type="password" class="form-control" id="password" name="password" minlength="8"required>
+            <input type="password" placerholder = "Deja vacio el campo para conservar contraseña anterior" class="form-control" id="password" name="password" minlength="8"required>
             <p id = "error" style="color:red"></p>
           </div>
 
-          <div class="mb-3">
-            <label for="role" class="form-label">Rol de usuario</label>
-            <select class="form-select" id="role" name="role">
-            <option value="1">Vendedor</option>
-              <option value="2">Comprador</option>
-              <option value="3">Administrador</option>
-            </select>
-          </div>
+          
 
           <div class="mb-3">
             <label for="private" class="form-label">Privacidad</label>

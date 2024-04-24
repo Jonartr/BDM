@@ -36,9 +36,10 @@
                       <h4><?php echo $_SESSION['Usuario']; ?></h4>
                       <p class="text-secondary mb-1">Usuario</p>
                       <p>
-                      <p class="text-muted font-size-sm">27 reseñas</p>
-                      <button class="btn btn-primary">Seguir</button>
-                      <button class="btn btn-outline-primary">Mensaje</button>
+                      <p class="text-muted font-size-sm">0 reseñas</p>
+                      <button class="btn btn-outline-primary">
+                          <a href="edicionperfil.php">Editar</a>
+                      </button>
                     </div>
                   </div>
 
