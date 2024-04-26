@@ -16,29 +16,34 @@
 <section class = "table table-hover table-striped table-responsive row justify-content-center
 col-sm-12
 ">
-    <table style="width: 50%; ">
+    <table id="Categorias" style="width: 50%; ">
     <tr>
-        <th>Nombre</th>
-    <th>Descripcion</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Autor</th>
     </tr>
-    <tr>
-        <td>Videojuegos</td>
-        <td>Entretenimiento</td>
-        <td><button class = "btn btn-outline-danger">Eliminar</button></td>
-    </tr>
-    <tr>
-        <td>Electronica</td>
-        <td>Laptops, Celulares, Etc.</td>
-        <td><button class = "btn btn-outline-danger">Eliminar</button></td>
+  
 
-    </tr>
+    <tbody>
+
+    </tbody>    
+
+
     <tr>
-        <td><button class = "btn btn-outline-success">Agregar</button></td>
+        <td><button class = "btn btn-outline-success"><a href="Nuevacategoria.php">Agregar</a></button></td>
 
     </tr>
 
     
 </table>
+
+<script >
+$.getJSON("php/GetCat.php",function(data){
+    alert(data);
+
+});
+
+</script>
 
 </section>
 

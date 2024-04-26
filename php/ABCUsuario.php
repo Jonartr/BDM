@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newimage =   base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $Imagen));   
 
 
-        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Rol', '$newimage', '$Nombre', '$Fecha','$Genero', 1,' $Private',1)";
+        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Rol', '$newimage', '$Nombre', '$Fecha','$Genero',' $Private',1)";
 
        /*$Query = "INSERT INTO usuarios VALUES 
        ('$Correo','$Usuario','$Contra', '$Roltype', '$Imagen', now(),null,1)";
