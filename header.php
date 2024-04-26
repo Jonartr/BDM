@@ -46,15 +46,32 @@
 <?php if (isset($_SESSION['Usuario'])){  /*---aa--- */
     
     $Rol = $_SESSION['Rol'];
+    $Privacidad = $_SESSION['Privacidad'];
 
     switch($Rol){
         case 1:
 ?>    <!--case 1-->   
 
+
+            <?php
+
+            if($Privacidad == 1){
+            ?>
             <li class="nav-item"> 
               <a href= "perfilvendedor.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
+
+            <?php }
+            else{
+            ?>
+
+            <li class="nav-item"> 
+              <a href= "perfilusuarioprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <?php  echo $_SESSION['Usuario'];?></a>
+            </li> 
+
+            <?php } ?>
   
             <li class="nav-item">
               <a href="php/CerrarSesion.php" class= "nav-link" style="margin-left: 25px;">Cerrar Sesión</a>
@@ -66,10 +83,26 @@
         case 2:
 ?>   
             <!--case 2-->
-            <li class="nav-item"> 
-              <a href= "perfilusuariopublico.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
-              <?php  echo $_SESSION['Usuario'];?></a>
-            </li>
+            <?php
+
+              if($Privacidad == 1){
+              ?>
+              <li class="nav-item"> 
+                <a href= "perfilvendedor.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+                <?php  echo $_SESSION['Usuario'];?></a>
+              </li>
+
+              <?php }
+              else{
+              ?>
+
+              <li class="nav-item"> 
+                <a href= "perfilusuarioprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+                <?php  echo $_SESSION['Usuario'];?></a>
+              </li> 
+
+              <?php } ?>
+
   
             <li class="nav-item">
               <a href="php/CerrarSesion.php" class= "nav-link my-2 my-sm-0 " style="margin-left: 25px;">Cerrar Sesión</a>
@@ -82,10 +115,26 @@
  ?>    
             <!--case 3-->
 
+                        <?php
+
+            if($Privacidad == 1){
+            ?>
             <li class="nav-item"> 
-              <a href= "perfiladmin.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilvendedor.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
+
+            <?php }
+            else{
+            ?>
+
+            <li class="nav-item"> 
+              <a href= "perfilusuarioprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <?php  echo $_SESSION['Usuario'];?></a>
+            </li> 
+
+            <?php } ?>
+
   
             <li class="nav-item">
               <a href="php/CerrarSesion.php" class="nav-link" style="margin-left: 25px;">Cerrar Sesión</a>

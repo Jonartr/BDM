@@ -14,7 +14,7 @@ if ($conexion->connect_error) {
 if($Correo != null && $Contrasena != null){
     $query = "SELECT usuarios.Correo, usuarios.NombreUsuario, usuarios.Contrasena, usuarios.Rol, usuarios.Imagen, 
     datospersonales.Nombre, datospersonales.FechaNacimiento, 
-    datospersonales.Sexo 
+    datospersonales.Sexo,usuarios.Privacidad
     FROM usuarios 
     INNER JOIN 
     datospersonales ON usuarios.Correo = datospersonales.Correo
@@ -36,6 +36,7 @@ $Result = $conexion->query($query);
            $_SESSION['Nombre'] = $row['Nombre'];
            $_SESSION['Fecha'] = $row['FechaNacimiento'];
            $_SESSION['Privacidad'] = $row['Privacidad'];
+           $_SESSION['Contra'] = $row['Contrasena'];
            $Sexo = $row['Sexo'];
 
            if ($Sexo == 1){

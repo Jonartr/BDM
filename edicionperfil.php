@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Actualizar datos</title>
     <link rel="stylesheet" href="css/registro.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -15,11 +15,11 @@
     <div class="row justify-content-center">
       <div class="col-md-6 col-xl-9">
         <h2 class="text-center mb-4">Editar datos de perfil</h2>
-        <form id="Registro">
+        <form id="Registro" action = "php/BCAUsuario.php" method = "post">
 
           <div class="mb-3">
-            <label for="password" class="form-label">Contraseña*</label>
-            <input type="password" placerholder = "Deja vacio el campo para conservar contraseña anterior" class="form-control" id="password" name="password" minlength="8"required>
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" placerholder = "Deja vacio el campo para conservar contraseña anterior" class="form-control" id="password" name="password" minlength="8">
             <p id = "error" style="color:red"></p>
           </div>
 
@@ -58,7 +58,7 @@
           </div>
           <br>
           <p id="dataleft" style="color:red;"></p>
-          <button type="submit" class="btn btn-primary">Registrarse</button>
+          <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
       </div>
     </div>
@@ -70,6 +70,6 @@
 <?php include("footer.php");?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src =  "js/registro.js"></script>
+
 </body>
 </html>

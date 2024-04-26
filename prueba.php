@@ -92,3 +92,46 @@
       </li>
       <!---->
       <?php } ?>
+
+      <!--Pruebas 2222-->
+
+      <?php if (isset($_SESSION['Usuario'])){  /*---aa--- */
+    
+    $Rol = $_SESSION['Rol'];
+
+    switch($Rol){
+        case 1:
+?>    <!--case 1-->   
+
+          <?php
+
+            if($Privacidad == 1){
+          ?>
+            <li class="nav-item"> 
+              <a href= "perfilvendedor.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <?php  echo $_SESSION['Usuario'];?></a>
+            </li>
+
+           <?php }
+            else{
+           ?>
+
+            <li class="nav-item"> 
+              <a href= "perfilprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <?php  echo $_SESSION['Usuario'];?></a>
+            </li> 
+           
+            <? php } ?>
+
+            <li class="nav-item">
+              <a href="php/CerrarSesion.php" class= "nav-link" style="margin-left: 25px;">Cerrar Sesión</a>
+            </li>
+
+
+
+          <!--case 1-->
+<?php //////
+        break; 
+        
+        case 2:
+?>   
