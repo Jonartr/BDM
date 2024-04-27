@@ -48,9 +48,10 @@ col-sm-12
    .then(response => response.json())
    .then(response => console.log(JSON.stringify(response)))
    .then(response =>{
-     //   const array = JSON.parse(response);
-    alert(response);
- 
+
+   const cat = JSON.stringify(response)
+
+    alert (cat);
 
     response.forEach(categoria => {
                 const newRow = document.createElement('tr');
