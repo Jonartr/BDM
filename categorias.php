@@ -34,16 +34,44 @@ col-sm-12
 
     </tr>
 
-    
-</table>
+   </table>
 
-<script >
-$.getJSON("php/GetCat.php",function(data){
-    alert(data);
 
-});
+ <script>
+        // Realizar la solicitud para obtener las categorías
+        fetch('php/Getcat.php', {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json',
+    },
+})
+   .then(response => response.json())
+   .then(response => console.log(JSON.stringify(response)))
+   .then(response =>{
+     //   const array = JSON.parse(response);
+    alert(response);
+ 
 
-</script>
+    response.forEach(categoria => {
+                const newRow = document.createElement('tr');
+
+                    // Agregar celdas para Nombre, Descripcion y Autor
+                    newRow.innerHTML = `
+                        <td>${categoria.nombre}</td>
+                        <td>${categoria.descripcion}</td>
+                        <td>${categoria.autor}</td>
+                    `;
+
+                    // Agregar la fila al cuerpo de la tabla
+                    tbody.appendChild(newRow);
+
+
+
+            });
+
+    });
+
+    </script>
 
 </section>
 

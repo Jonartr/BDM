@@ -1,4 +1,6 @@
 <?php
+header('Acess-Control-Allow-Origin:*');
+header('Content-type: application/json');
 require_once("Conexion.php");
 
 $startcon = new Conectar();
@@ -12,19 +14,23 @@ if($conexion->connect_error){
 
 $Query = "SELECT Nombre, Descripcion, Correo FROM categorias";
 
-$Result = $conexion->query($Query);
+$result = $conexion->query($Query);
 
 if ($result->num_rows > 0) {
 
-    $Categorias = array();
+  
 
     while($row = $result->fetch_assoc()) {
-        $Categorias[] = $row;
-    }
+        $Categorias = array(
+            "Nombre" => $row['Nombre'],
+            "Descripcion" => $row['Descripcion'],
+            "Correo" => $row['Correo']
+        );
+    } 
 
-    header('Content-Type: application/json');
-    echo json_encode($categorias);
+    echo json_encode($Categorias);
 
+    
 }else {
   
     http_response_code(404);
