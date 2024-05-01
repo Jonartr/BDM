@@ -7,6 +7,12 @@
 </head>
 <body>
   <?php session_start(); ?>
-  <img src="data:image/jpg;charset=utf8;base64,../img/<?php echo base64_encode($_SESSION['Foto']); ?>" /> 
+  <p><?php echo "img/".$_SESSION['Foto'] ?></p>
+  
+  <video width="320" height="240" controls>
+      <source src="<?php echo "img/".$_SESSION['Foto'] ?>" type="video/mp4">
+      
+  </video>
+  <button><a href="php/recuperar_imagen.php">Cargar foto</a></button>
 </body>
 </html>

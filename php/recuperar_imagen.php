@@ -11,17 +11,19 @@ if($conexion->connect_error){
 }
 
 // Consulta para recuperar la imagen
-$query = "SELECT Imagen_1 FROM producto WHERE Codigo = '54'"; // Cambia "tabla_imagenes" por el nombre de tu tabla y ajusta la condición WHERE según tus necesidades
+$query = "SELECT Video FROM producto WHERE Codigo = '54'"; // Cambia "tabla_imagenes" por el nombre de tu tabla y ajusta la condición WHERE según tus necesidades
 $resultado = mysqli_query($conexion, $query);
 
 if ($resultado) {
     
     $fila = mysqli_fetch_assoc($resultado);
-    $_SESSION['Foto'] = $fila['Imagen_1'];
+    $Foto = $_SESSION['Foto'] = $fila['Video'];
+    $ruta = "../img/".$Foto;
 
     // Devolver la imagen con las cabeceras adecuadas
     header('Content-type: image/jpeg'); // Cambia el tipo de imagen según corresponda
-    echo $_SESSION['Foto'];
+    echo $ruta;
+    header('Location: ../prueba.php');
 } else {
     echo 'No se pudo recuperar la imagen.';
 }
