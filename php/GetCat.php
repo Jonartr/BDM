@@ -12,7 +12,7 @@ if($conexion->connect_error){
 }
 
 
-$Query = "SELECT Nombre, Descripcion, Correo FROM categorias";
+$Query = "SELECT Nombre, Descripcion, Usuario FROM categorias";
 
 $result = $conexion->query($Query);
 
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
         $Categorias = array(
             "Nombre" => $row['Nombre'],
             "Descripcion" => $row['Descripcion'],
-            "Correo" => $row['Correo']
+            "Correo" => $row['Usuario']
         );
     } 
 

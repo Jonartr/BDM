@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Nombre = $data['Name'];
         $Descripcion = $data['Desc'];
 
-        $Query = "INSERT INTO categorias(Nombre, Descripcion, Correo) VALUES ('$Nombre','$Descripcion','$Usuario')";
+        $Query = "INSERT INTO categorias(Nombre, Descripcion, Usuario) VALUES ('$Nombre','$Descripcion','$Usuario')";
 
         $conexion->query($Query);
 

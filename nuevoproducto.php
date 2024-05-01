@@ -19,27 +19,28 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2 class="text-center mb-4">Detalles del producto</h2>
-        <form action="#" method="post">
+        <form action="php/ABCProducto.php" method="post" enctype = "multipart/form-data">
+
           <div class="mb-3">
             <label for="text" class="form-label">Nombre del producto</label>
             <input type="text" class="form-control" id="namepr" name="namepr" required>
           </div>
+
           <div class="mb-3">
             <label for="text" class="form-label">Descripcion del producto</label>
             <input type="text" class="form-control" id="descpr" name="descpr" required>
           </div>
-          <div class="mb-3">
-            <label for="text" class="form-label">Descripcion del producto</label>
-            <input type="text" class="form-control" id="descpr" name="descpr" required>
-          </div>
+
           <div>
           <label for="cat" class="form-label">Categoria</label>
           <select class="form-select" id="cat" name="cat">
-              <option value="1">Videojuegos</option>
-              <option value="2">Electronica</option>
+              <option value="2">Videojuegos</option>
+              <option value="3">Electronica</option>
             </select>
           </div>
+
           <br>
+
           <div>
           <label for="tsell" class="form-label">Tipo de venta</label>
           <select class="form-select" id="tsell" name="tsell">
@@ -47,10 +48,12 @@
               <option value="2">Cotizacion</option>
             </select>
           </div>
+
           <div class="mb-3">
             <label for="price" class="form-label">Precio del producto</label>
             <input type="number" class="form-control" id="price" name="price" required>
           </div>
+
           <div class="mb-3">
             <label for="count" class="form-label">Cantidad del producto</label>
             <input type="number" class="form-control" id="count" name="count" required>
@@ -60,6 +63,7 @@
             <label for="img1" class="form-label">Imagen 1 del producto</label>
             <input type="file" class="form-control" id="img1" name="img1">
           </div>
+
           <div class="mb-3">
             <label for="img2" class="form-label">Imagen 2 del producto</label>
             <input type="file" class="form-control" id="img2" name="img2">
@@ -68,10 +72,12 @@
             <label for="img3" class="form-label">Imagen 3 del producto</label>
             <input type="file" class="form-control" id="img3" name="img3">
           </div>
+
           <div class="mb-3">
             <label for="vid" class="form-label">Video del producto</label>
             <input type="file" class="form-control" id="vid" name="vid">
           </div>
+          
           <br>
         
           <button type="submit" class="btn btn-primary">Agregar producto</button>
