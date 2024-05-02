@@ -15,7 +15,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6 col-xl-9">
         <h2 class="text-center mb-4">Registro de Usuario</h2>
-        <form id="Registro">
+        <form id="Registro"  >
 
           <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico*</label>

@@ -6,7 +6,20 @@
     <title>Visualizar Imagen</title>
 </head>
 <body>
-  <?php session_start(); ?>
-  <img src="data:image/jpg;charset=utf8;base64,../img/<?php echo base64_encode($_SESSION['Foto']); ?>" /> 
+  <?php session_start(); 
+  //notas de imagenes 
+  //Nunca cargarlas imagenes con nombres de archivos numericos, el backslash detecta si 
+  //el primer parametro es un numero habra incoveniente y no se podra encontrar bien el archivo
+    $Imagen = "C:\\fakepath\Silver.Wolf.full.3883657.png";
+    $Hola = str_replace("\\","/",$Imagen);
+    $archivo = basename($Imagen);
+    $ruta = "../img/".$archivo;
+
+  ?>
+  <p><?php echo $Imagen; ?></p>
+  <p><?php echo $Hola; ?></p>
+  <p><?php echo $archivo; ?></p>
+  <p><?php echo $ruta; ?></p>
+  <img src="C:/fakepath/Silver.Wolf.full.3883657.png" /> 
 </body>
 </html>
