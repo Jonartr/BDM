@@ -40,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
        $Query = "INSERT INTO datospersonales VALUES ('$Nombre','$Fecha','$Genre','$Correo')";*/
 
-     //   $conexion->query($Query);
+        $conexion->query($Query);
     }
 
 
 }
 
-   //$conexion->close();
+   $conexion->close();
 ?>

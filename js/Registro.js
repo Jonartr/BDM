@@ -92,7 +92,7 @@ if (okvalidator ==3){
         console.log(response);
     },
     error: function(error) {
-       
+        alert(error);
         console.error("Error en la solicitud AJAX:", error);
     }
 });
