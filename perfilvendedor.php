@@ -35,7 +35,7 @@
                     <img src="img/weon.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4>  <?php echo $_SESSION['Usuario'] ?> </h4>
-                      <p class="text-secondary mb-1">Vendedor</p>
+                      <p class="text-secondary mb-1"><?php echo $_SESSION['Foto'] ?></p>
                       <p>
                       <p class="text-muted font-size-sm">
                         <div class="product-rating mb-2">

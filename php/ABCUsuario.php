@@ -24,11 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Genero = $data['genre'];
         $Private = $data['private'];
 
-        //Conversion de imagen
-        $newimage =   base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $Imagen));   
+   
 
+        $nombre_archivo = basename($Imagen);
 
-        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Rol', '$newimage', '$Nombre', '$Fecha','$Genero',' $Private',1)";
+        $ruta = "../img/".$nombre_archivo;
+
+        move_uploaded_file($nombre_archivo, $ruta);
+
+        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Rol', '$nombre_archivo', '$Nombre', '$Fecha','$Genero',' $Private',1)";
 
        /*$Query = "INSERT INTO usuarios VALUES 
        ('$Correo','$Usuario','$Contra', '$Roltype', '$Imagen', now(),null,1)";
@@ -36,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
        $Query = "INSERT INTO datospersonales VALUES ('$Nombre','$Fecha','$Genre','$Correo')";*/
 
-        $conexion->query($Query);
+     //   $conexion->query($Query);
     }
 
 
 }
 
-    $conexion->close();
+   //$conexion->close();
 ?>
