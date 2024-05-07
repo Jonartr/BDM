@@ -18,18 +18,7 @@ formulario.addEventListener("submit", function(event){
     var erroru = document.getElementById("erroruser");
     var errorleft = document.getElementById("dataleft");
 
-            // Crear un objeto de tipo FileReader
-        var reader = new FileReader();
 
-        // Definir una función que se ejecutará cuando la imagen se cargue correctamente
-        reader.onloadend = function() {
-            var base64data = reader.result;
-            image = base64data;
-            // Aquí puedes enviar la imagen en formato base64 a tu servidor a través de una petición AJAX o almacenarla temporalmente en una variable para enviarla posteriormente.
-        }
-
-        // Leer el contenido de la imagen como un objeto Blob
-        reader.readAsDataURL(image.files[0]);
 
    
       var dataObject = {
