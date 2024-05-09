@@ -16,9 +16,10 @@
     <section class = "table table-hover table-striped table-responsive row justify-content-center col-sm-12">
     <table id="Categorias" style="width: 75%; ">
     <tr>
+            <th> </th>
             <th>Nombre lista</th>
             <th>Descripcion</th>
-            <th>Imagenes</th>
+            <th>Imagen</th>
             <th>Privacidad</th>
             <th>Autor</th>
     </tr>
@@ -30,10 +31,21 @@
     
     ?>      
         <tr>
+            <td><?php echo $i+1; ?></td>
             <td><?php echo $Lista['Nombre']; ?></td>
             <td><?php echo $Lista['Descripcion']; ?></td>
             <td> <img src="<?php echo "img/".$Lista['Imagen']; ?>" alt="" width="64px;" height="64px;" style= "border-radius:100px"> </td>
-            <td><?php echo $Lista['Privacidad']; ?></td>
+
+            <td><?php
+             if($Lista['Privacidad'] == 1){
+                echo "Publica";
+             } 
+             else{
+                echo "Privada";
+             }
+             ?>
+             </td>
+
             <td><?php echo $Lista['Usuario']; ?></td>
         </tr>
            
