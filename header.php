@@ -39,7 +39,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">Mis listas</a>
+        <a class="nav-link" href="php/GetLista.php">Mis listas</a>
       </li>
 
       <li class="nav-item">
@@ -101,7 +101,7 @@
               ?>
 
               <li class="nav-item"> 
-                <a href= "perfilusuarioprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+                <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
                 <?php  echo $_SESSION['Usuario'];?></a>
               </li> 
 
@@ -109,7 +109,7 @@
 
   
             <li class="nav-item">
-              <a href="php/CerrarSesion.php" class= "nav-link my-2 my-sm-0 " style="margin-left: 25px;">Cerrar Sesión</a>
+              <a href="php/CerrarSesion.php" class= "navbar-brand my-2 my-sm-0 " style="margin-left: 25px;">Cerrar Sesión</a>
             </li>
              <!--case 2-->
  <?php    
