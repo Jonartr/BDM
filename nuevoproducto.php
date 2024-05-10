@@ -35,7 +35,7 @@
           <label for="cat" class="form-label">Categoria</label>
           <select class="form-select" id="cat" name="cat">
               <option value="2">Videojuegos</option>
-              <option value="3">Electronica</option>
+              <option value="4">Electronica</option>
             </select>
           </div>
 
@@ -51,7 +51,7 @@
 
           <div class="mb-3">
             <label for="price" class="form-label">Precio del producto</label>
-            <input type="number" class="form-control" id="price" name="price" required>
+            <input type="text" class="form-control" id="price" name="price" required>
           </div>
 
           <div class="mb-3">

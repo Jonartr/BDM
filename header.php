@@ -27,7 +27,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="productos.php">Productos</a>
+        <a class="nav-link" href="php/GetProducto.php">Productos</a>
       </li>
 
       <li class="nav-item">

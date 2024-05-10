@@ -40,7 +40,7 @@ move_uploaded_file($_FILES['vid']['tmp_name'], $ruta4);
 $Query = "INSERT INTO producto (Nombre,	Descripcion, Imagen_1, Imagen_2, Imagen_3, Video, 
 TipoVenta, Precio, Existencias, Valoracion, Comentarios, Categoria, Usuario) 
 VALUES ('$nombre','$descrpcion','$imagen_1','$imagen_2','$imagen_3','$video','$tipoventa','$precio' 
-, '$cantidad', null, null,'$categoria','$Usuario')" ;
+, '$cantidad', 0, null,'$categoria','$Usuario')" ;
 
    $conexion->query($Query);
    

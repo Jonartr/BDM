@@ -27,7 +27,7 @@
     <?php 
 
         for($i = 0; $i < $Indice; $i++){
-            $Lista = $_SESSION['Listas'][0];
+            $Lista = $_SESSION['Listas'][$i];
     
     ?>      
         <tr>
