@@ -20,7 +20,7 @@
   </button>
 
   <div class="collapse navbar-collapse row" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mx-4">
       
       <li class="nav-item">
       <a class="nav-link" href="inicio.php">Inicio</a>
@@ -92,7 +92,7 @@
               if($Privacidad == 1){
               ?>
               <li class="nav-item"> 
-                <a href= "perfilvendedor.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+                <a href= "perfilvendedor.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
                 <?php  echo $_SESSION['Usuario'];?></a>
               </li>
 
@@ -124,7 +124,7 @@
             if($Privacidad == 1){
             ?>
             <li class="nav-item"> 
-              <a href= "perfilvendedor.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilvendedor.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
 
@@ -133,7 +133,7 @@
             ?>
 
             <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li> 
 
@@ -141,7 +141,7 @@
 
   
             <li class="nav-item">
-              <a href="php/CerrarSesion.php" class="nav-link" style="margin-left: 25px;">Cerrar Sesión</a>
+              <a href="php/CerrarSesion.php" class="navbar-brand" style="margin-left: 25px;">Cerrar Sesión</a>
             </li>
              <!--case 3-->
  <?php
@@ -151,7 +151,7 @@
 ?>    
             <!--case 4-->
             <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "nav-link" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
   
@@ -192,23 +192,11 @@
 
     </ul>
 
-    
-    <!-- Puedes agregar más elementos a la derecha -->
-    <!-- Por ejemplo, un botón de inicio de sesión -->
-    <!-- <form class="form-inline my-2 my-lg-0">
-    <a href="login.php" class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 750px;">Iniciar Sesión</a>
-    <a href="registro.php" class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 25px;">Registrarse</a>
-    </form> -->
+
   </div>
 </nav>
 
 </header>
-
-
-
-
-
-
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

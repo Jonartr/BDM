@@ -4,7 +4,14 @@
 <header>
  <?php 
     include ("header.php"); 
-    $Indice = count($_SESSION['Listas']);
+
+    if(isset($_SESSION['Listas'])){
+        $Indice = count($_SESSION['Listas']);
+    }
+    else{
+        $Indice = 0;
+    }
+  
 
   ?>
 
