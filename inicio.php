@@ -43,7 +43,15 @@
                      <?php } ?>
                     </div>
                     <h5 class="mb-0 text-primary"><?php echo  "$".$Producto['Precio'] ?></h5>
+
+                    <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Agregar al carrito
+                    </button>
+
                 </div>
+
+               
+
             </div>
 
             <?php } ?>
@@ -51,6 +59,39 @@
             
         </div>
     </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+     <div class="modal-dialog">
+        <div class="modal-content">
+
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar a lista de deseos</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body col row">
+
+            <div class="col row ms-2">
+                <span class ="col-9 fs-6 row ">Lista 1</span>
+                <button class = "btn btn-success col-3 "> Agregar</button>
+                <hr class = "mt-3" >
+        
+            </div>
+            
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+            <button type="button" class="btn btn-primary "> <a class = "text-decoration-none" style = "color:white" href="Listas.php">Ver mis listas</a></button>
+        </div>
+
+        </div>
+  </div>
+
+
 </section>
 
 
