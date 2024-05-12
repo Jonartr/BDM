@@ -23,7 +23,7 @@
     <ul class="navbar-nav mx-4">
       
       <li class="nav-item">
-      <a class="nav-link" href="inicio.php">Inicio</a>
+      <a class="nav-link" href="php/ShowProducto.php">Inicio</a>
       </li>
 
       <li class="nav-item">
