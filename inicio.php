@@ -22,7 +22,7 @@
 
             <div class="col-sm-6 col-lg-3 mb-2-6">
                 <div class="card-wrapper mb-4">
-                    <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_2']; ?>" alt="Imagen 1" width="75%" height="50%"></div>
+                    <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_1']; ?>" alt="Imagen 1" width="75%" height="50%"></div>
                     <div class="card-body">
                         <div>
                             <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                  
+                    <option value="<?php $Codigop = $Producto['Codigo']; ?>"></option>
                     <h4 class="h5 mb-2"><a href="#" class="text-secondary"><?php echo $Producto['Nombre'];?></a></h4>
                     <div class="product-rating mb-2">
 
@@ -44,9 +44,18 @@
                     </div>
                     <h5 class="mb-0 text-primary"><?php echo  "$".$Producto['Precio'] ?></h5>
 
-                    <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Agregar al carrito
-                    </button>
+                    <div>
+
+                            <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Agregar a lista
+                            </button>
+
+                            <button class = "btn btn-secondary mx-5 my-3">Agregar al carrito </button>
+                            
+                    </div>
+
+
+                   
 
                 </div>
 
@@ -63,6 +72,7 @@
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+
      <div class="modal-dialog">
         <div class="modal-content">
 
@@ -74,10 +84,26 @@
         <div class="modal-body col row">
 
             <div class="col row ms-2">
-                <span class ="col-9 fs-6 row ">Lista 1</span>
-                <button class = "btn btn-success col-3 "> Agregar</button>
-                <hr class = "mt-3" >
-        
+
+                <?php $Indice = count($_SESSION['Listas']);
+                        for($i = 0; $i < $Indice; $i++){
+                            $Listau = $_SESSION['Listas'][0];
+                    
+                    ?>
+                    <option value="<?php echo $Listau['ID_Lista']; ?>"></option>
+                    <span class ="col-9 fs-6 row "><?php echo $Listau['Nombre'];?></span>
+
+                    <button class = "btn btn-success col-3"  value = "<?php  $_SESSION['Opc_L'] = $Listau['ID_Lista'];
+                      $_SESSION['Opcmysql'] = 4; $_SESSION['CodLista'] = $Codigop;?>" onclick="alert(value)">
+                      
+                    <a href="php/ABCProducto.php" class= "text-decoration-none" style="color:white;">Agregar</a> 
+                      
+                    </button>
+
+                    <hr class = "mt-3" >
+
+                    <?php } ?>
+            
             </div>
             
 

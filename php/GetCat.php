@@ -3,6 +3,7 @@ header('Acess-Control-Allow-Origin:*');
 header('Content-type: application/json');
 require_once("Conexion.php");
 
+
 $startcon = new Conectar();
 $conexion = $startcon->Conectar();
 
@@ -12,7 +13,7 @@ if($conexion->connect_error){
 }
 
 
-$Query = "SELECT Nombre, Descripcion, Usuario FROM categorias";
+$Query = "SELECT Nombre, Descripcion, Correo FROM categorias";
 
 $result = $conexion->query($Query);
 
@@ -24,7 +25,7 @@ if ($result->num_rows > 0) {
         $Categorias = array(
             "Nombre" => $row['Nombre'],
             "Descripcion" => $row['Descripcion'],
-            "Correo" => $row['Usuario']
+            "Correo" => $row['Correo']
         );
     } 
 

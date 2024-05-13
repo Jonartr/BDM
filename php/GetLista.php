@@ -31,7 +31,7 @@ else{
 
 
 $conexion->close();
-header("location: ../Listas.php");
+//header("location: ../Listas.php");
 
 
 ?>

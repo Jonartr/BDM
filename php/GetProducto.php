@@ -27,6 +27,6 @@ if ($result->num_rows > 0) {
 }
 
 $conexion->close();
-header("location: ../productos.php");
+//header("location: ../productos.php");
 
 ?>

@@ -51,7 +51,7 @@ $Result = $conexion->query($query);
         }
 
 
-        header("Location:../ShowProducto.php");
+        header("Location: Precarga.php");
     }
     else{
         echo "<script> alert('Correo y/o contraseña incorrectos, verifique nuevamente'); </script>"; 
