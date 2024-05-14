@@ -6,6 +6,6 @@ Este nada mas es para ver pendientes que haya xd
 - Arreglar Visualizacion de categorias
 - Arreglar Imagen de perfil de usuario desde json 
 - Agregar API extena y middleware
-- Agregar al carrito 
+- Agregar al carrito ( Validaciones pendientes )
 - Proceso de compra
 - Cotizacion 

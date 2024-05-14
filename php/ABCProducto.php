@@ -13,6 +13,8 @@ if($conexion->connect_error){
 
 if ( $_SESSION['Opcmysql'] != 4){
 
+        /* AGREGAR, EDITAR O ELIMINAR (TRIGGER) PRODUCTOS */
+
             $nombre = $_POST['namepr'];
             $descrpcion = $_POST['descpr'];
             $categoria = $_POST['cat'];
@@ -53,8 +55,10 @@ else if ($_SESSION['Opcmysql'] == 4){
     $Opcion = $_SESSION['Opcmysql'];
     $Codigo = $_SESSION['CodLista'];
     $Idlista =  $_SESSION['Opc_L']; 
+    /* SOLO PARA AGREGAR SI EL PRODUCTO VA A PERTENECER A UNA LISTA DE DESEOS*/
 
-    $Query = "CALL ABCProductos (null, null, null, null, null, null, null, null, null, null, null, null,'$Opcion', '$Codigo',$Idlista );";
+    $Query = "CALL ABCProductos (null, null, null, null, null, null, null,
+     null, null, null, null, null,'$Opcion', '$Codigo',$Idlista );";
     $conexion->query($Query);
 
 }

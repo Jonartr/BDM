@@ -14,7 +14,8 @@
 
 <!--Contenido de la página asi bien chido UwU-->
 <section class="main-section">
-<?php $Producto =  $_SESSION['Productos_show'][0];?>
+<?php $Producto =  $_SESSION['Productos_show'][0];
+?>
     <div class="container my-5">
         <div class="row">
 
@@ -30,7 +31,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <option value="<?php $Codigop = $Producto['Codigo']; ?>"></option>
+                    <!--VALORES PARA PODER AGREGARLOS AL CARRITO DE COMPRAS-->
                     <h4 class="h5 mb-2"><a href="#" class="text-secondary"><?php echo $Producto['Nombre'];?></a></h4>
                     <div class="product-rating mb-2">
 
@@ -50,7 +51,21 @@
                                 Agregar a lista
                             </button>
 
-                            <button class = "btn btn-secondary mx-5 my-3">Agregar al carrito </button>
+                            <button class = "btn btn-secondary mx-5 my-3" value = "
+
+                                <?php
+                             
+                                   $_SESSION['Carrito'] = array();
+                                   $_SESSION['Carrito'] = $Producto;
+                                   echo count($_SESSION['Carrito']);
+                                ?>
+
+                            " onclick="alert('Agregado al carrito con exito')">
+
+                                Agregar al carrito 
+                            
+                            </button>
+
                             
                     </div>
 
@@ -85,24 +100,38 @@
 
             <div class="col row ms-2">
 
-                <?php $Indice = count($_SESSION['Listas']);
+                <?php
+                    if(isset($_SESSION['Listas'])){
+                        $Indice = count($_SESSION['Listas']);
                         for($i = 0; $i < $Indice; $i++){
-                            $Listau = $_SESSION['Listas'][0];
+                            $Listau = $_SESSION['Listas'][$i];
                     
                     ?>
                     <option value="<?php echo $Listau['ID_Lista']; ?>"></option>
                     <span class ="col-9 fs-6 row "><?php echo $Listau['Nombre'];?></span>
 
-                    <button class = "btn btn-success col-3"  value = "<?php  $_SESSION['Opc_L'] = $Listau['ID_Lista'];
-                      $_SESSION['Opcmysql'] = 4; $_SESSION['CodLista'] = $Codigop;?>" onclick="alert(value)">
-                      
-                    <a href="php/ABCProducto.php" class= "text-decoration-none" style="color:white;">Agregar</a> 
-                      
+                    <button class = "btn btn-success col-3" 
+
+                        value = "<?php  
+                        /*Fumadota chida para guardar datos apoco no*/
+                        $_SESSION['Opc_L'] = $Listau['ID_Lista'];
+
+                        $_SESSION['Opcmysql'] = 4; 
+
+                        $_SESSION['CodLista'] = $Codigop;?>" 
+                        
+                        onclick="alert('Producto agregado a lista');">
+                        
+                        <a href="php/ABCProducto.php" class= "text-decoration-none" style="color:white;">Agregar</a> 
+                        
                     </button>
 
                     <hr class = "mt-3" >
 
-                    <?php } ?>
+                    <?php } //CICLO
+                     } // CONDICIONAL
+                    
+                    ?>
             
             </div>
             
