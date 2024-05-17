@@ -43,9 +43,21 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="carrito.php">Carrito</a>
+        <a class="nav-link" href="carrito.php">Carrito 
+          
+        <?php
+          if(isset($_SESSION['Carrito'])){
+            echo count($_SESSION['Carrito']);
+          }
+          else {
+            echo '0';
+          }
+
+        
+        ?></a>
       </li>
 
+      
      
 <?php if (isset($_SESSION['Usuario'])){  /*---aa--- */
     

@@ -10,12 +10,7 @@
 </head>
 <body>
 
-<?php include("header.php");  
-
-if(isset( $_SESSION['Carrito'])){
-    $Carrito =$_SESSION['Carrito'];
-}
- ?>
+<?php include("header.php");  ?>
 
 <div class="container pb-5 mt-n2 mt-md-n3 ">
     <div class="row">
@@ -24,7 +19,14 @@ if(isset( $_SESSION['Carrito'])){
 
                  <!-- Item-->
 
-            <?php if (isset($Carrito)){?>     
+            <?php if (isset($_SESSION['Carrito'])){
+                
+                  $Si = count($_SESSION['Carrito']);
+
+                for($i = 0 ; $i<$Si;$i++){
+                    $Carrito = $_SESSION['Carrito'][$i];
+                
+                ?>     
 
             <div class="d-sm-flex justify-content-between my-4 pb-4 ">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
@@ -41,33 +43,78 @@ if(isset( $_SESSION['Carrito'])){
                         <label for="quantity1">Cantidad</label>
                         <input class="form-control form-control-sm" type="number" id="quantity1" value="1">
                     </div>
-                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
+                    <!-- <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
                             <polyline points="23 4 23 10 17 10"></polyline>
                             <polyline points="1 20 1 14 7 14"></polyline>
                             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>Actualizar carrito</button>
-                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button"  
-                    <?php unset($_SESSION['Carrito']);
-                          unset($Carrito);  
-                    ?>     
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>Quitar</button>
+                        </svg>Actualizar carrito</button> -->
+
+                    
+                    <form action="php/EliminarCarrito.php" method="post">
+                    <input type="hidden" name="IndiceCar" value="<?php echo $i; ?>">
+                    <input type="hidden" name="OpcionDelete" value="<?php echo $_SESSION['OpcDelCar'] = 1; ?>">
+                            <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="submit" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>Quitar
+                            
+                            </button>
+                    </form>
+                    
+                 
+
+
                 </div>
             </div>
 
-            <?php  } ?>     
+            <?php  } //For
+            
+            }//Condifcion
+            ?>     
 
          
         <!-- Sidebar-->
         <div class="col-xl-3 col-md-4 pt-3 pt-md-0">
+
+                  <form action="php/EliminarCarrito.php" method="post">
+                    <input type="hidden" name="OpcionDelete" value="<?php echo $_SESSION['OpcDelCar'] = 2; ?>">
+                            <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="submit" >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>Eliminar todos <?php echo count($_SESSION['Carrito']); ?>
+                            
+                            </button>
+                    </form>
+
             <h2 class="h6 px-4 py-3 bg-secondary text-center">Subtotal</h2>
-            <div class="h3 font-weight-semibold text-center py-3">$50,999.00</div>
+            <?php   
+                $Subtotal = 0.00;
+
+                if (isset($_SESSION['Carrito'])){
+                    $Contador = count($_SESSION['Carrito']);
+                 
+
+                    for($i = 0; $i < $Contador; $i++ ){
+                        $Carrito_price =$_SESSION['Carrito'][$i];
+                       $Subtotal = $Carrito_price['Precio'] + $Subtotal; 
+                    }
+                }
+                else{
+                    $Subtotal = 0.00;
+                }
+                  
+            
+            ?>
+
+          
+            <div class="h3 font-weight-semibold text-center py-3">$<?php echo $Subtotal ?></div>
             <hr>
             <h3 class="h6 pt-4 font-weight-semibold"><span class="badge badge-success mr-2">Nota</span>Comentarios</h3>
             <textarea class="form-control mb-3" id="order-comments" rows="5"></textarea>

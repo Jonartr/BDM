@@ -9,13 +9,16 @@
 </head>
 <body>
 
-<?php include("header.php");?>
+<?php include("header.php"); 
+
+$_SESSION['Opcmysql'] = 1;
+?>
 
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6 col-xl-9">
         <h2 class="text-center mb-4">Registro de Usuario</h2>
-        <form id="Registro"  enctype = "multipart/form-data">
+        <form id="Registro" method = "post" enctype = "multipart/form-data">
 
           <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico*</label>
@@ -78,6 +81,8 @@
           <p id="dataleft" style="color:red;"></p>
           <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
+
+        <p><?php echo $_SESSION['prueba'];?></p>
       </div>
     </div>
   </div>

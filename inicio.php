@@ -14,13 +14,20 @@
 
 <!--Contenido de la página asi bien chido UwU-->
 <section class="main-section">
-<?php $Producto =  $_SESSION['Productos_show'][0];
+<?php 
+      $IndiceP = count($_SESSION['Productos_show']);  
+
 ?>
     <div class="container my-5">
         <div class="row">
 
-            <?php for ($i = 0; $i<2; $i++){ ?>
+            <?php for ($i = 0; $i<$IndiceP; $i++){
+                
+                $Producto =  $_SESSION['Productos_show'][$i];
+                ?>
 
+               
+               
             <div class="col-sm-6 col-lg-3 mb-2-6">
                 <div class="card-wrapper mb-4">
                     <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_1']; ?>" alt="Imagen 1" width="75%" height="50%"></div>
@@ -46,27 +53,20 @@
                     <h5 class="mb-0 text-primary"><?php echo  "$".$Producto['Precio'] ?></h5>
 
                     <div>
-
+                    <option value = "<?php $PSelect = $i; ?>"></option>
                             <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Agregar a lista
                             </button>
 
-                            <button class = "btn btn-secondary mx-5 my-3" value = "
-
-                                <?php
-                             
-                                   $_SESSION['Carrito'] = array();
-                                   $_SESSION['Carrito'] = $Producto;
-                                   echo count($_SESSION['Carrito']);
-                                ?>
-
-                            " onclick="alert('Agregado al carrito con exito')">
-
-                                Agregar al carrito 
-                            
+                            <form action="php/AgregarCarrito.php" method="post" style="display: inline;">
+                            <input type="hidden" name="SetCar" value="<?php echo $PSelect; ?>">
+                            <button class="btn btn-secondary mx-5 my-3" type="submit" onclick="alert('Producto agregado al carrito')">
+                                Agregar al carrito
                             </button>
+                        </form>
+                          
+                        
 
-                            
                     </div>
 
 
@@ -156,6 +156,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 <!-- <div class="col-sm-6 col-lg-3 mb-2-6">

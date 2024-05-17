@@ -11,6 +11,9 @@ if($conexion->connect_error){
 
 }
 
+
+$Opcion = $_SESSION['Opcmysql'];
+
 if ( $_SESSION['Opcmysql'] != 4){
 
         /* AGREGAR, EDITAR O ELIMINAR (TRIGGER) PRODUCTOS */
@@ -41,10 +44,8 @@ if ( $_SESSION['Opcmysql'] != 4){
 
 
 
-            $Query = "INSERT INTO producto (Nombre,	Descripcion, Imagen_1, Imagen_2, Imagen_3, Video, 
-            TipoVenta, Precio, Existencias, Valoracion, Comentarios, Categoria, Usuario) 
-            VALUES ('$nombre','$descrpcion','$imagen_1','$imagen_2','$imagen_3','$video','$tipoventa','$precio' 
-            , '$cantidad', 0, null,'$categoria','$Usuario')" ;
+            $Query = "CALL ABCProductos ('$nombre','$descrpcion', '$imagen_1', '$imagen_2', '$imagen_3','$video','$tipoventa',
+            '$precio', '$cantidad' , 0, '$categoria','$Usuario', '$Opcion' , 0, 0);";
 
             $conexion->query($Query);
             

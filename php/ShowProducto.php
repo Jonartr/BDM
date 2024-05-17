@@ -17,8 +17,9 @@ $Query = "SELECT * FROM producto";
 $result = $conexion->query($Query);
 
 if ($result->num_rows > 0) {
+    $Datos = array();
     while($row = $result->fetch_assoc()) {
-        $Datos = array();
+        
         $Datos[] = $row;
      }
      $_SESSION['Productos_show'] = array();
