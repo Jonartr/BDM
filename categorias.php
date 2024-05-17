@@ -38,37 +38,33 @@ col-sm-12
 
 
  <script>
-    
-        fetch('php/Getcat.php', {
+
+    let tbody = document.querySelector('#Categorias tbody');
+
+
+   fetch('php/Getcat.php', {
     method: 'GET',
     headers: {
         'Accept': 'application/json',
     },
 })
-   .then(response => response.json())
-   .then(response => console.log(JSON.stringify(response)))
-   .then(response =>{
-
-    alert(response);
-    
-    response.forEach(categoria => {
-                const newRow = document.createElement('tr');
-
-                  
-                    newRow.innerHTML = `
-                        <td>${categoria.nombre}</td>
-                        <td>${categoria.descripcion}</td>
-                        <td>${categoria.autor}</td>
-                    `;
-
-                    
-                    tbody.appendChild(newRow);
-
-
-
-            });
-
-    });
+.then(response => response.json())
+.then(response => {
+    if (Array.isArray(response)) {
+        response.forEach(categoria => {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${categoria.Nombre}</td>
+                <td>${categoria.Descripcion}</td>
+                <td>${categoria.Correo}</td>
+            `;
+            tbody.appendChild(newRow);
+        });
+    } else {
+        console.error('La respuesta no es un array:', response);
+    }
+})
+.catch(error => console.error('Error:', error));
 
     </script>
 

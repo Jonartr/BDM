@@ -37,8 +37,19 @@
           <div>
           <label for="cat" class="form-label">Categoria</label>
           <select class="form-select" id="cat" name="cat">
-              <option value="2">Videojuegos</option>
-              <option value="4">Electronica</option>
+
+              <?php
+
+             if (isset($_SESSION['Categoria'])){ 
+                $Indice = count($_SESSION['Categoria']);
+               for ($i = 0; $i< $Indice ;$i++){ 
+                  $Categoria = $_SESSION['Categoria'][$i];
+              ?>
+
+                <option value="<?php echo $Categoria['ID_Cat']; ?>"><?php echo $Categoria['Nombre'];  ?></option>
+
+              <?php }
+              }?>
             </select>
           </div>
 

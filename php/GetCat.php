@@ -13,22 +13,30 @@ if($conexion->connect_error){
 }
 
 
-$Query = "SELECT Nombre, Descripcion, Correo FROM categorias";
+$Query = "SELECT ID_Cat, Nombre, Descripcion, Correo FROM categorias";
 
 $result = $conexion->query($Query);
 
 if ($result->num_rows > 0) {
 
-  
-
+    $Categorias = array();
+    $_SESSION['Categoria'] = array();//php
     while($row = $result->fetch_assoc()) {
-        $Categorias = array(
+
+        $Datos[] = $row;//php
+
+        $Categorias[] = array(
+            "ID" => $row['ID_Cat'],
             "Nombre" => $row['Nombre'],
             "Descripcion" => $row['Descripcion'],
             "Correo" => $row['Correo']
         );
-    } 
+        //php
+        $_SESSION['Categoria'] = $Datos;
 
+    } 
+  
+    
     echo json_encode($Categorias);
 
     

@@ -17,11 +17,12 @@ else{
   $result = $conexion->query($Query);
 
   if ($result->num_rows > 0) {
+    $Datos = array();
+    $_SESSION['Listas'] = array();
     while($row = $result->fetch_assoc()) {
-       $Datos = array();
        $Datos[] = $row;
     }
-    $_SESSION['Listas'] = array();
+ 
     $_SESSION['Listas'] = $Datos;
 
   }
