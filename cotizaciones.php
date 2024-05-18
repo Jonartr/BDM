@@ -9,7 +9,14 @@
 </head>
 <body>
 
-<?php include("header.php");?>
+<?php include("header.php");
+
+if (isset($_SESSION['Cotizacion'])){
+    $Cotizar = $_SESSION['Cotizacion'][0];
+}
+
+
+?>
 <div class="container mt-5">
     <div class="row">
       <div class="col-md-4">
@@ -23,21 +30,21 @@
           </div>
         
         </div>
-        <form class="mt-3">
+        <form class="mt-3" action = "php/NuevoMensaje.php" method = "Post">
           <div class="mb-3">
             <label for="message" class="form-label">Escribe tu mensaje:</label>
-            <textarea class="form-control" id="message" rows="3"></textarea>
+            <textarea class="form-control" id="message" name ="message" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
       </div>
       <div class="col-md-8">
         <div class="product-info">
-          <h2>Producto: Apple Vision Pro</h2>
-          <img src="img/AppleVisionPro.png" alt="Imagen del producto" class="product-image">
-          <p>Descripción del producto: Gafas bien chidas. </p>
-          <p><strong>Precio:</strong> $39,999.00</p>
-          <button class="btn btn-success">Enviar Cotización</button>
+          <h2>Producto: <?php echo $Cotizar['Nombre']; ?></h2>
+          <img src="<?php echo "img/".$Cotizar['Imagen_1']?>" alt="Imagen del producto" class="product-image">
+          <h4>Descripción del producto: <?php echo $Cotizar['Descripcion']?> </h4>
+          <h3><strong>Precio:</strong> $<?php echo $Cotizar['Precio']?></h3>
+          <h3><strong>Vendedor:</strong> <?php echo $Cotizar['Usuario']?></h3>
         </div>
       </div>
     </div>

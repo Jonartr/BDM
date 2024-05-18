@@ -50,22 +50,61 @@
                         <i class="fas fa-star mr-0"></i> -->
                      <?php } ?>
                     </div>
-                    <h5 class="mb-0 text-primary"><?php echo  "$".$Producto['Precio'] ?></h5>
+                    <h5 class="mb-0 text-primary">
+                        
+                            <?php 
+                            if ($Producto['TipoVenta'] == 2){
+                                echo "Solo para cotizar";
+                            }
+                            else{
+                                echo   "$".$Producto['Precio'];
+                            }
+
+                          
+                            
+                            
+                            ?>
+                        
+                    </h5>
 
                     <div>
-                    <option value = "<?php $PSelect = $i; ?>"></option>
-                            <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Agregar a lista
-                            </button>
 
-                            <form action="php/AgregarCarrito.php" method="post" style="display: inline;">
-                            <input type="hidden" name="SetCar" value="<?php echo $PSelect; ?>">
-                            <button class="btn btn-secondary mx-5 my-3" type="submit" onclick="alert('Producto agregado al carrito')">
-                                Agregar al carrito
-                            </button>
-                        </form>
-                          
+                    <?php 
+                        if($Producto['TipoVenta'] == 1){ ?>            
+                            <option value = "<?php $PSelect = $i; ?>"></option>
+                                    <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Agregar a lista
+                                    </button>
+
+                                    <form action="php/AgregarCarrito.php" method="post" style="display: inline;">
+                                    <input type="hidden" name="SetCar" value="<?php echo $PSelect; ?>">
+                                    <button class="btn btn-secondary mx-5 my-3" type="submit" onclick="alert('Producto agregado al carrito')">
+                                        Agregar al carrito
+                                    </button>
+                                </form>
+
+                        <?php 
+                        }
+                        else{
+
+                         ?>   
+                             <option value = "<?php $PCotizar = $i; ?>"></option>
+                            <form action="php/NewCotizacion.php" method="post">
+                                  <input type="hidden" name="Cotizar" value="<?php echo $PCotizar; ?>">
+                                    <button class = "btn btn-primary mx-5 my-3" type="submit" value="<?php echo $PCotizar;?>"
+                                    onclick="alert(value)"
+                                    >
+                                          Pedir cotizacion del producto
+                                    </button> 
+
+
+                            </form>    
+
+                           
+                        <?php
+                        }
                         
+                        ?>
 
                     </div>
 

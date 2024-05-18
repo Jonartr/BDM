@@ -37,7 +37,7 @@ col-sm-12
    </table>
 
 
- <script>
+ <script>un 
 
     let tbody = document.querySelector('#Categorias tbody');
 
