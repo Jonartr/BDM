@@ -42,9 +42,11 @@ if (isset($_SESSION['Cotizacion'])){
         <div class="product-info">
           <h2>Producto: <?php echo $Cotizar['Nombre']; ?></h2>
           <img src="<?php echo "img/".$Cotizar['Imagen_1']?>" alt="Imagen del producto" class="product-image">
+          <img src="<?php echo "img/".$Cotizar['Imagen_2']?>" alt="Imagen del producto" class="product-image">
+          <img src="<?php echo "img/".$Cotizar['Imagen_3']?>" alt="Imagen del producto" class="product-image">
           <h4>Descripción del producto: <?php echo $Cotizar['Descripcion']?> </h4>
-          <h3><strong>Precio:</strong> $<?php echo $Cotizar['Precio']?></h3>
-          <h3><strong>Vendedor:</strong> <?php echo $Cotizar['Usuario']?></h3>
+          <h5><strong>Precio:</strong> $<?php echo $Cotizar['Precio']?></h3>
+          <h5><strong>Vendedor:</strong> <?php echo $Cotizar['Usuario']?></h3>
         </div>
       </div>
     </div>
