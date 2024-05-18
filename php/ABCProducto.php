@@ -16,10 +16,18 @@ if($conexion->connect_error){
 }
 
 
-$Opcion = $_SESSION['Opcmysql'];
+if (isset($_GET['eliminar'])){
+    $_SESSION['Opcmysql']= $_GET['eliminar'];
+  $Opcion = $_GET['eliminar'];
+}
+else{
+    $Opcion = $_SESSION['Opcmysql'];
+}
+
+
 $MoveMultimedia = 0;
 
-if ( $_SESSION['Opcmysql'] != 4){
+if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
 
 
         /* AGREGAR, EDITAR O ELIMINAR (TRIGGER) PRODUCTOS */
@@ -141,6 +149,10 @@ if ( $_SESSION['Opcmysql'] != 4){
            
 
 }
+elseif ($_SESSION['Opcmysql'] == 3){
+    header("location: ../prueba.php");
+
+}
 else if ($_SESSION['Opcmysql'] == 4){
     $Opcion = $_SESSION['Opcmysql'];
     $Codigo = $_SESSION['CodLista'];
@@ -156,6 +168,6 @@ else if ($_SESSION['Opcmysql'] == 4){
 
 $conexion->close();
  
-header("location: GetProducto.php");
+//header("location: GetProducto.php");
 
 ?>

@@ -53,6 +53,7 @@ col-sm-12
 
             ?>  
             <input type="hidden" name = "id_producto" value="<?php echo $i;?>">    
+            <input type="hidden" name = "eliminar" value="3">    
             <tr>
                 <td><?php echo $i+1; ?></td>
                 <td><?php echo $Lista['Nombre']; ?></td>
@@ -77,7 +78,7 @@ col-sm-12
                 <td><?php echo $Lista['Existencias']; ?></td>
                 <td><?php echo $Lista['Valoracion']; ?></td>
                 <td><button class = "btn btn-outline-warning" type="submit" formaction="editarproducto.php?id_producto=<?php $i;?>">Editar</button></td>
-                <td><button class = "btn btn-outline-danger">Eliminar</button></td>
+                <td><button class = "btn btn-outline-danger" type="submit" formaction="php/ABCProducto.php?id_producto=<?php $i;?>&eliminar = 3">Eliminar</button></td>
             </tr>
             
 
