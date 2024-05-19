@@ -13,7 +13,7 @@ if($conexion->connect_error){
 
 
 
-$Query = "SELECT * FROM producto WHERE Usuario = '$Usuario'";
+$Query = "SELECT * FROM producto WHERE Usuario = '$Usuario' AND Estatus = 1";
 
 $result = $conexion->query($Query);
 $Datos = array();

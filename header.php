@@ -57,6 +57,12 @@
         ?></a>
       </li>
 
+      <!-- Formulario de búsqueda -->
+<form class="d-flex ms-auto" action="busqueda.php" method="GET">
+    <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
+    <button class="btn btn-outline-info" type="submit">Buscar</button>
+</form>
+
       
      
 <?php if (isset($_SESSION['Usuario'])){  /*---aa--- */

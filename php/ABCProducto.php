@@ -4,10 +4,11 @@ session_start();
 
 $Usuario = $_SESSION['Correo'];
 $Producto;
+$Codigo; 
 $startcon = new Conectar();
 $conexion = $startcon->Conectar();
 
-
+$_SESSION['RedirigirProducto'] = true;
 
 
 if($conexion->connect_error){
@@ -22,6 +23,10 @@ if (isset($_GET['eliminar'])){
 }
 else{
     $Opcion = $_SESSION['Opcmysql'];
+}
+
+if(isset($_GET['Indice'])){
+    $Indice = $_GET['Indice'];
 }
 
 
@@ -45,7 +50,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $nombre = $_POST['namepr'];
             }
             else{
-                $nombre = $_SESSION['Productos']['Nombre'];
+                $nombre = $_SESSION['Productos']['Nombre'][$Indice];
             }
          
 
@@ -53,7 +58,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $descrpcion = $_POST['descpr'];
             }  
             else{
-              //  $descrpcion = $_SESSION['Productos']['Descripcion'];
+                $descrpcion = $_SESSION['Productos']['Descripcion'][$Indice];
             }
 
          
@@ -62,7 +67,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $categoria = $_POST['cat'];
             }
             else{
-                $categoria =$_SESSION['Productos']['Categoria'];
+                $categoria =$_SESSION['Productos']['Categoria'][$Indice];
             }
           
 
@@ -70,7 +75,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $tipoventa = $_POST['tsell'];
             }
             else{
-                $tipoventa = $_SESSION['Productos']['TipoVenta'];
+                $tipoventa = $_SESSION['Productos']['TipoVenta'][$Indice];
             }
           
 
@@ -78,7 +83,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $precio = $_POST['price'];
             }
             else{
-             //   $precio = $_SESSION['Productos']['Precio'];
+                $precio = $_SESSION['Productos']['Precio'][$Indice];
             }
         
 
@@ -87,7 +92,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $cantidad = $_POST['count'];
             }
             else{
-                $cantidad = $_SESSION['Productos']['Existencias'];
+                $cantidad = $_SESSION['Productos']['Existencias'][$Indice];
             }
          
 
@@ -97,7 +102,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $imagen_1 = $_SESSION['Productos']['Imagen_1'];
+                $imagen_1 = $_SESSION['Productos']['Imagen_1'][$Indice];
             }
     
 
@@ -106,7 +111,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $imagen_2 = $_SESSION['Productos']['Imagen_2'];
+                $imagen_2 = $_SESSION['Productos']['Imagen_2'][$Indice];
             }
         
 
@@ -115,7 +120,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $imagen_3 = $_SESSION['Productos']['Imagen_3'];
+                $imagen_3 = $_SESSION['Productos']['Imagen_3'][$Indice];
             }
        
 
@@ -124,7 +129,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $video = $_SESSION['Productos']['Video'];
+                $video = $_SESSION['Productos']['Video'][$Indice];
             }
      
             if ( $MoveMultimedia == 4){
@@ -152,6 +157,13 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
 }
 else if ($_SESSION['Opcmysql'] == 3){
     $Opcion = $_SESSION['Opcmysql'];
+
+    if(isset($_GET['del_producto'])){
+
+        $Codigo = $_GET['del_producto'];
+    }
+
+
     $Query = "CALL ABCProductos (null, null, null, null, null, null, null,
      null, null, null, null, null,'$Opcion', '$Codigo',null );";
     $conexion->query($Query);
@@ -172,6 +184,6 @@ else if ($_SESSION['Opcmysql'] == 4){
 
 $conexion->close();
  
-//header("location: GetProducto.php");
+header("location: Precarga.php");
 
 ?>

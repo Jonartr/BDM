@@ -96,9 +96,10 @@
             <label for="vid" class="form-label">Video del producto</label>
             <input type="file" class="form-control" id="vid" name="vid">
           </div>
-
+      
           <input type="hidden" name ="CodigoEditar" value="<?php echo  $Producto['Codigo']?>">
-          
+          <input type="hidden" name ="Indice" value="<?php echo  $idproducto?>">
+
           <br>
         
           <button type="submit" class="btn btn-primary">Agregar producto</button>
