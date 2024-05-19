@@ -24,6 +24,12 @@ else{
     $Opcion = $_SESSION['Opcmysql'];
 }
 
+if (isset($_GET['id_producto'])){
+    $Indice = $_GET['id_producto'];
+    $Producto = $_SESSION['Productos'][$Indice];
+    $Codigo = $Producto['Codigo'];
+}
+
 
 $MoveMultimedia = 0;
 
@@ -149,8 +155,11 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
            
 
 }
-elseif ($_SESSION['Opcmysql'] == 3){
-    header("location: ../prueba.php");
+else if ($_SESSION['Opcmysql'] == 3){
+    $Opcion = $_SESSION['Opcmysql'];
+    $Query = "CALL ABCProductos (null, null, null, null, null, null, null,
+     null, null, null, null, null,'$Opcion', '$Codigo',null );";
+    $conexion->query($Query);
 
 }
 else if ($_SESSION['Opcmysql'] == 4){
@@ -160,7 +169,7 @@ else if ($_SESSION['Opcmysql'] == 4){
     /* SOLO PARA AGREGAR SI EL PRODUCTO VA A PERTENECER A UNA LISTA DE DESEOS*/
 
     $Query = "CALL ABCProductos (null, null, null, null, null, null, null,
-     null, null, null, null, null,'$Opcion', '$Codigo',$Idlista );";
+     null, null, null, null, null,'$Opcion', '$Codigo','$Idlista' );";
     $conexion->query($Query);
 
 }

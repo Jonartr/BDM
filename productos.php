@@ -45,15 +45,18 @@ col-sm-12
     </tr>
 
     
-        <form action="" method= "get">
+        
     <?php 
 
             for($i = 0; $i < $Indice; $i++){
                 $Lista = $_SESSION['Productos'][$i];
 
             ?>  
+             <form action="" method= "get">
             <input type="hidden" name = "id_producto" value="<?php echo $i;?>">    
             <input type="hidden" name = "eliminar" value="3">    
+
+            
             <tr>
                 <td><?php echo $i+1; ?></td>
                 <td><?php echo $Lista['Nombre']; ?></td>
@@ -80,14 +83,14 @@ col-sm-12
                 <td><button class = "btn btn-outline-warning" type="submit" formaction="editarproducto.php?id_producto=<?php $i;?>">Editar</button></td>
                 <td><button class = "btn btn-outline-danger" type="submit" formaction="php/ABCProducto.php?id_producto=<?php $i;?>&eliminar = 3">Eliminar</button></td>
             </tr>
-            
+            </form>
 
 
      <?php        
             }       
 
      ?>
-        </form>
+     
         
     <tr>
         <td><button class = "btn btn-outline-success"><a href="nuevoproducto.php" style="text-decoration: none; color: black"> Agregar</a></button></td>

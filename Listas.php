@@ -37,7 +37,12 @@
             $Lista = $_SESSION['Listas'][$i];
     
     ?>      
+             <form action="" method= "get">
+
+             <input type="hidden" name = "id_lista" value="<?php echo $i;?>">    
+            <input type="hidden" name = "eliminar" value="3">    
         <tr>
+            <input type="hidden" value = "<?php echo $i ?>">
             <td><?php echo $i+1; ?></td>
             <td><?php echo $Lista['Nombre']; ?></td>
             <td><?php echo $Lista['Descripcion']; ?></td>
@@ -54,14 +59,17 @@
              </td>
 
             <td><?php echo $Lista['Usuario']; ?></td>
+            <td><button class = "btn btn-outline-warning" type="submit" formaction="Editarlista.php?id_lista=<?php  $i;?>">Editar</button></td>
+            <td><button class = "btn btn-outline-danger" type="submit" formaction="php/ABCLista.php?id_lista=<?php $i;?>&eliminar=3">Eliminar</button></td>
         </tr>
-           
-
+        </form>  
+         
 
     <?php        
         } 
         
      ?>
+   
 
     <tr>
         <td><button class = "btn btn-outline-success"><a href="Nuevalista.php">Agregar</a></button></td>
