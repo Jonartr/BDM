@@ -24,11 +24,6 @@ else{
     $Opcion = $_SESSION['Opcmysql'];
 }
 
-if (isset($_GET['id_producto'])){
-    $Indice = $_GET['id_producto'];
-    $Producto = $_SESSION['Productos'][$Indice];
-    $Codigo = $Producto['Codigo'];
-}
 
 
 $MoveMultimedia = 0;
@@ -38,7 +33,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
 
         /* AGREGAR, EDITAR O ELIMINAR (TRIGGER) PRODUCTOS */
 
-            if(isset($_POST['CodigoEditar'])){
+            if(isset($_POST['CodigoEditar']) && $_POST['CodigoEditar'] != null ){
                 $Codigo = $_POST['CodigoEditar'];
 
             }
@@ -50,7 +45,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $nombre = $_POST['namepr'];
             }
             else{
-                $Codigo = $Producto['Nombre'];
+                $nombre = $_SESSION['Productos']['Nombre'];
             }
          
 
@@ -58,7 +53,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $descrpcion = $_POST['descpr'];
             }  
             else{
-                $descrpcion = $Producto['Descripcion'];
+              //  $descrpcion = $_SESSION['Productos']['Descripcion'];
             }
 
          
@@ -67,7 +62,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $categoria = $_POST['cat'];
             }
             else{
-                $categoria =$Producto['Categoria'];
+                $categoria =$_SESSION['Productos']['Categoria'];
             }
           
 
@@ -75,7 +70,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $tipoventa = $_POST['tsell'];
             }
             else{
-                $tipoventa = $Producto['TipoVenta'];
+                $tipoventa = $_SESSION['Productos']['TipoVenta'];
             }
           
 
@@ -83,7 +78,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $precio = $_POST['price'];
             }
             else{
-                $precio = $Producto['Precio'];
+             //   $precio = $_SESSION['Productos']['Precio'];
             }
         
 
@@ -92,7 +87,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $cantidad = $_POST['count'];
             }
             else{
-                $cantidad = $Producto['Existencias'];
+                $cantidad = $_SESSION['Productos']['Existencias'];
             }
          
 
@@ -102,7 +97,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $imagen_1 = $Producto['Imagen_1'];
+                $imagen_1 = $_SESSION['Productos']['Imagen_1'];
             }
     
 
@@ -111,7 +106,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $imagen_2 = $Producto['Imagen_2'];
+                $imagen_2 = $_SESSION['Productos']['Imagen_2'];
             }
         
 
@@ -120,7 +115,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $imagen_3 = $Producto['Imagen_3'];
+                $imagen_3 = $_SESSION['Productos']['Imagen_3'];
             }
        
 
@@ -129,7 +124,7 @@ if ( $_SESSION['Opcmysql'] != 4 && $_SESSION['Opcmysql'] != 3 ){
                 $MoveMultimedia++;
             }
             else{
-                $video = $Producto['Video'];
+                $video = $_SESSION['Productos']['Video'];
             }
      
             if ( $MoveMultimedia == 4){

@@ -17,7 +17,8 @@
     <?php include("header.php");
     $Codigopr;
     if(isset($_GET['id_producto'])){
-      $Codigopr = $_GET['id_producto'];
+      $idproducto = $_GET['id_producto'];
+      $Producto = $_SESSION['Productos'][$idproducto];
     }
     $_SESSION['Opcmysql'] = 2;
     
@@ -96,7 +97,7 @@
             <input type="file" class="form-control" id="vid" name="vid">
           </div>
 
-          <input type="hidden" name ="CodigoEditar" value="<?php echo $Codigopr; ?>">
+          <input type="hidden" name ="CodigoEditar" value="<?php echo  $Producto['Codigo']?>">
           
           <br>
         
