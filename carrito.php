@@ -74,7 +74,10 @@
             <?php  } //For
             
             }//Condifcion
-            ?>     
+            else{ ?>
+                <div class='container text-center mt-5'><img src='img/vacio.gif' alt='Carrito vacío'> <h3>Tan vacio como mi cartera~</h3> </div>
+
+           <?php  } ?>     
 
          
         <!-- Sidebar-->

@@ -12,12 +12,12 @@
 
 <!-- Barra de navegación -->
 <header class="header">
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand"href="landing.php" style="margin-left: 15px;">π-Line</a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+            <a class="navbar-brand" href="landing.php" >π-Line</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
   <div class="collapse navbar-collapse row" id="navbarNavDropdown">
     <ul class="navbar-nav mx-4">
@@ -43,27 +43,22 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="carrito.php">Carrito 
-          
-        <?php
-          if(isset($_SESSION['Carrito'])){
-            echo count($_SESSION['Carrito']);
-          }
-          else {
-            echo '0';
-          }
-
-        
-        ?></a>
+        <a class="nav-link" href="carrito.php">Carrito</a>
       </li>
 
-      <!-- Formulario de búsqueda -->
+      <li class="nav-item">
+        <a class="nav-link" href="php/AutorizarProductos.php">Aprobaciones de productos</a>
+      </li>
+
+
+
+
+<!-- Formulario de búsqueda -->
 <form class="d-flex ms-auto" action="busqueda.php" method="GET">
     <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
     <button class="btn btn-outline-info" type="submit">Buscar</button>
 </form>
 
-      
      
 <?php if (isset($_SESSION['Usuario'])){  /*---aa--- */
     
@@ -198,19 +193,21 @@
         else{ 
        ?>
 
-      <li class="nav-item">
-      <a href="login.php" class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 750px;">Iniciar Sesión</a>
-      </li>
-
-      <li class="nav-item">
-      <a href="registro.php" class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 25px;">Registrarse</a>
-      </li>
+<ul class="navbar-nav ms-auto">
+<li class="nav-item" >
+        <a class="btn btn-outline-success  me-2 my-2 my-sm-0" href="registro.php">Registrarse</a>
+    </li>
+    <li class="nav-item" style="margin-right: 36px;">
+        <a class="btn btn-success my-2 my-sm-0" href="login.php">Iniciar Sesión</a>
+    </li>
+</ul>
       <!---->
       <?php } ?>
 
     </ul>
 
 
+    </div>
   </div>
 </nav>
 

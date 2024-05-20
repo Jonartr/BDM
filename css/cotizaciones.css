@@ -1,6 +1,9 @@
 .chat-box {
     height: 400px;
     overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
   }
   .message-container {
     margin-bottom: 20px;
@@ -10,13 +13,45 @@
     border-radius: 10px;
     background-color: #f0f0f0;
   }
-  .product-info {
+
+  .product-info{
     border: 1px solid #ddd;
     padding: 20px;
     border-radius: 10px;
   }
   
+ .clientes-info{
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
   .product-image {
     max-width: 250px;
     max-height: 250px;
   }
+
+
+
+  .fixed-size {
+    width: 200px;
+    height: 200px;
+}
+
+
+.list-unstyled{
+  border-bottom:10px;
+}
+
+.avatar {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%; 
+  margin-right: 10px; 
+}
+
+.message-with-avatar {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 15px; 
+}

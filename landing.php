@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido a Piline</title>
     <link rel="stylesheet" href="css/landing.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </head>
 <body>
 
 <?php include("header.php");?>
 
-<main role="main">
+<main role="main " >
 
-<div id="myCarousel" class="carousel slide"  data-bs-ride="carousel">
-  <div class="carousel-indicators ">
+<div id="myCarousel" class="carousel slide "  data-bs-ride="carousel" >
+<div class="carousel-indicators ">
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
 
-  <div class="carousel-inner ">
+  <div class="carousel-inner">
     <div class="carousel-item active">
       <!--<img src="img/Landing1.png" class="first-slide" alt="Fondo1">-->
       <img class="first-slide" src="img/Landing1.png" alt="First slide">
@@ -55,6 +57,9 @@
             </div>
           </div>
 
+    </div>
+       
+
   <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -63,6 +68,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+
 </div>
 
 
@@ -126,9 +132,9 @@
           </div>
         </div>
 
-        <hr class="featurette-divider">
+        <hr class="featurette-divider ">
 
-        <div class="row featurette">
+        <div class="row featurette mb-5">
           <div class="col-md-7">
             <h2 class="featurette-heading">Hot Sale. <span class="text-muted">Proximamente...</span></h2>
             <p class="lead">¿Estás listo para el evento de compras más emocionante del año? El Hot Sale está a punto de llegar y estamos ansiosos por ofrecerte increíbles ofertas y descuentos en todos tus productos favoritos.</p>
@@ -138,7 +144,7 @@
           </div>
         </div>
 
-        <hr class="featurette-divider">
+        <hr class="featurette-divider ">
 
         <!-- /END THE FEATURETTES -->
 
@@ -146,9 +152,9 @@
 
 </main>
 
-
-
 <?php include("footer.php");?>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

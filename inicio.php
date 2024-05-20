@@ -26,96 +26,98 @@
                 $Producto =  $_SESSION['Productos_show'][$i];
                 ?>
 
-               
-               
-            <div class="col-sm-6 col-lg-3 mb-2-6">
-                <div class="card-wrapper mb-4">
-                    <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_1']; ?>" alt="Imagen 1" width="75%" height="50%"></div>
-                    <div class="card-body">
-                        <div>
-                            <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                    
+              
+                <div class="col-sm-6 col-lg-3 mb-2-6">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_1']; ?>" alt="Imagen 1" width="75%" height="50%"></div>
+                        <div class="card-body">
+                            <div>
+                                <!-- <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a> -->
+                                <form action="" method = "get">
+                                <input type="hidden" name ="Show" value ="<?php echo $i;?>">
+                                     <button class = "btn btn-primary" type="submit" formaction="singleProduct.php?Show=<?php $i;?>">Ver mas</button>
+
+                                </form>
+                               
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <!--VALORES PARA PODER AGREGARLOS AL CARRITO DE COMPRAS-->
-                    <h4 class="h5 mb-2"><a href="#" class="text-secondary"><?php echo $Producto['Nombre'];?></a></h4>
-                    <div class="product-rating mb-2">
+                    <div class="text-center">
+                        <!--VALORES PARA PODER AGREGARLOS AL CARRITO DE COMPRAS-->
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary"><?php echo $Producto['Nombre'];?></a></h4>
+                        <div class="product-rating mb-2">
 
-                    <?php for ($j = 0; $j <$Producto['Valoracion']; $j++){ ?>
-                        <i class="fas fa-star"></i> 
-                        <!-- <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star mr-0"></i> -->
-                     <?php } ?>
-                    </div>
-                    <h5 class="mb-0 text-primary">
-                        
-                            <?php 
-                            if ($Producto['TipoVenta'] == 2){
-                                echo "Solo para cotizar";
-                            }
-                            else{
-                                echo   "$".$Producto['Precio'];
-                            }
-
-                          
+                        <?php for ($j = 0; $j <$Producto['Valoracion']; $j++){ ?>
+                            <i class="fas fa-star"></i> 
+                            <!-- <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i> -->
+                        <?php } ?>
+                        </div>
+                        <h5 class="mb-0 text-primary">$
                             
+                                <?php 
+                                if ($Producto['TipoVenta'] == 2){
+                                    echo "Solo para cotizar";
+                                }
+                                else{
+                
+                                    setlocale(LC_MONETARY,'es_MX');
+                                    echo number_format($Producto['Precio'],2);
+                                }
+
+                                ?>
                             
-                            ?>
-                        
-                    </h5>
+                        </h5>
 
-                    <div>
-
-                    <?php 
-                        if($Producto['TipoVenta'] == 1){ ?>            
-                            <option value = "<?php $PSelect = $i; ?>"></option>
-                                    <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Agregar a lista
-                                    </button>
-
-                                    <form action="php/AgregarCarrito.php" method="post" style="display: inline;">
-                                    <input type="hidden" name="SetCar" value="<?php echo $PSelect; ?>">
-                                    <button class="btn btn-secondary mx-5 my-3" type="submit" onclick="alert('Producto agregado al carrito')">
-                                        Agregar al carrito
-                                    </button>
-                                </form>
+                        <div>
 
                         <?php 
-                        }
-                        else{
+                            if($Producto['TipoVenta'] == 1){ ?>            
+                                <option value = "<?php $PSelect = $i; ?>"></option>
+                                        <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Agregar a lista
+                                        </button>
 
-                         ?>   
-                             <option value = "<?php $PCotizar = $i; ?>"></option>
-                            <form action="php/NewCotizacion.php" method="post">
-                                  <input type="hidden" name="Cotizar" value="<?php echo $PCotizar; ?>">
-                                    <button class = "btn btn-primary mx-5 my-3" type="submit" value="<?php echo $PCotizar;?>"
-                                    onclick="alert(value)"
-                                    >
-                                          Pedir cotizacion del producto
-                                    </button> 
+                                        <form action="php/AgregarCarrito.php" method="post" style="display: inline;">
+                                        <input type="hidden" name="SetCar" value="<?php echo $PSelect; ?>">
+                                        <button class="btn btn-secondary mx-5 my-3" type="submit" onclick="alert('Producto agregado al carrito')">
+                                            Agregar al carrito
+                                        </button>
+                                    </form>
+
+                            <?php 
+                            }
+                            else{
+
+                            ?>   
+                                <option value = "<?php $PCotizar = $i; ?>"></option>
+                                <form action="php/NewCotizacion.php" method="post">
+                                    <input type="hidden" name="Cotizar" value="<?php echo $PCotizar; ?>">
+                                        <button class = "btn btn-primary mx-5 my-3" type="submit" value="<?php echo $PCotizar;?>"
+                                        onclick="alert(value)"
+                                        >
+                                            Pedir cotizacion del producto
+                                        </button> 
 
 
-                            </form>    
+                                </form>    
 
-                           
-                        <?php
-                        }
-                        
-                        ?>
+                            
+                            <?php
+                            }
+                            
+                            ?>
+
+                        </div>
 
                     </div>
 
-
-                   
-
                 </div>
 
-               
-
-            </div>
+           
 
             <?php } ?>
 
@@ -187,9 +189,6 @@
 
 
 </section>
-
-
-
 
 <?php include("footer.php");?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

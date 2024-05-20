@@ -10,7 +10,7 @@ if ($IndiceDel == 1){
   $_SESSION['Carrito'] = array_values($_SESSION['Carrito']);
 }
 else if ($IndiceDel == 2){
-    $_SESSION['Carrito']=array();
+   unset($_SESSION['Carrito']);
 }
 
 

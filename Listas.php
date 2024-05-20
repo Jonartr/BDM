@@ -84,4 +84,6 @@
 </section>   
 </body>
 
+
+<?php include("footer2.php")  ?>
 </html>

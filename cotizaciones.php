@@ -14,45 +14,83 @@
 if (isset($_SESSION['Cotizacion'])){
     $Cotizar = $_SESSION['Cotizacion'][0];
 }
+else{
+  $Cotizar = array();
+}
 
 
 ?>
-<div class="container mt-5">
+<main role="main">
+
+
+<div class="container my-5">
+<h1 class="mb-4 text-center">Cotización</h1>
+        <br>
+
     <div class="row">
-      <div class="col-md-4">
+
+    <div class="col-md-2 mb-5">
+    <div class="clientes-info">
+    <h4>Otros Clientes</h4>
+            <ul class="list-unstyled text-center">
+            <li class="mb-1"><img src="img/Cliente1.png" alt="Chat 1" class="img-thumbnail rounded" width="100px"></li>
+            <li class="mb-1"><img src="img/Cliente2.jpg" alt="Chat 2" class="img-thumbnail rounded" width="100px"></li>
+            <li class="mb-1"><img src="img/Cliente3.png" alt="Chat 3" class="img-thumbnail rounded" width="100px"></li>
+            <li class="mb-1"><img src="img/Cliente1.png" alt="Chat 1" class="img-thumbnail rounded" width="100px"></li>
+            <li class="mb-1"><img src="img/Cliente2.jpg" alt="Chat 2" class="img-thumbnail rounded" width="100px"></li>
+            <li class="mb-1"><img src="img/Cliente3.png" alt="Chat 3" class="img-thumbnail rounded" width="100px"></li>
+            </ul>
+        </div>
+        </div>
+
+    <div class="col-md-4">
+        <div class="product-info">
+          <h2>Producto a cotizar: </h2>
+          <h4><?php echo $Cotizar['Nombre'] ?></h4>
+          <img src="<?php echo "img/".$Cotizar['Imagen_1'] ?>" alt="Imagen del producto" class="product-image fixed-size">
+          <p>Descripción del producto: <?php echo "img/".$Cotizar['Descripcion'] ?>. </p>
+          <p><strong>Precio:</strong> Por definir</p>
+          <button class="btn btn-success">Enviar Cotización</button>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
         <div class="chat-box">
           <div class="message-container">
-            <div class="message">Hola, estoy interesado en obtener una cotización para este producto.</div>
+
+          <div class="message-with-avatar">
+                <img src="img/Cliente1.png" alt="Perfil-Cliente" class="avatar">
+                <div class="message">Hola, estoy interesado en obtener una cotización para este producto.</div>
+            </div>
+
+            <div class="message-with-avatar">
+                <img src="img/Cliente1.png" alt="Perfil-Cliente" class="avatar">
             <div class="message">¿Puedes proporcionarme más información?</div>
           </div>
+
           <div class="message-container text-end">
             <div class="message">Claro, ¿qué información necesitas?</div>
           </div>
         
         </div>
-        <form class="mt-3" action = "php/NuevoMensaje.php" method = "Post">
+        <form class="mt-3">
           <div class="mb-3">
             <label for="message" class="form-label">Escribe tu mensaje:</label>
-            <textarea class="form-control" id="message" name ="message" rows="3"></textarea>
+            <textarea class="form-control" id="message" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
       </div>
-      <div class="col-md-8">
-        <div class="product-info">
-          <h2>Producto: <?php echo $Cotizar['Nombre']; ?></h2>
-          <img src="<?php echo "img/".$Cotizar['Imagen_1']?>" alt="Imagen del producto" class="product-image">
-          <img src="<?php echo "img/".$Cotizar['Imagen_2']?>" alt="Imagen del producto" class="product-image">
-          <img src="<?php echo "img/".$Cotizar['Imagen_3']?>" alt="Imagen del producto" class="product-image">
-          <h4>Descripción del producto: <?php echo $Cotizar['Descripcion']?> </h4>
-          <h5><strong>Precio:</strong> $<?php echo $Cotizar['Precio']?></h3>
-          <h5><strong>Vendedor:</strong> <?php echo $Cotizar['Usuario']?></h3>
-        </div>
-      </div>
+
+     
+
+
+
     </div>
   </div>
 
-
+</main>
 
 <?php include("footer.php");?>
 

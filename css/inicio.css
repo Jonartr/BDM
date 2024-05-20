@@ -8,7 +8,10 @@ body{
     margin-top:20px;
  }
 
-
+ main{
+    background-color:#dcdcdc;
+    }
+    
  .main-section {
     margin-top: 20px; 
 }
