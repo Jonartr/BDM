@@ -27,7 +27,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="productos.php">Productos</a>
+        <a class="nav-link" href="productos.php">Mis productos</a>
       </li>
 
       <li class="nav-item">
@@ -51,11 +51,9 @@
       </li>
 
 
-
-
 <!-- Formulario de búsqueda -->
-<form class="d-flex ms-auto" action="busqueda.php" method="GET">
-    <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
+<form class="d-flex ms-auto" action="php/Buscar.php" method="GET">
+    <input class="form-control me-2" type="search" name="search" placeholder="Buscar..." aria-label="Buscar">
     <button class="btn btn-outline-info" type="submit">Buscar</button>
 </form>
 
@@ -68,7 +66,6 @@
     switch($Rol){
         case 1:
 ?>    <!--case 1-->   
-
 
             <?php
 
