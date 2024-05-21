@@ -44,10 +44,10 @@
  ?>
     <div class="col-md-4">
         <div class="product-info">
-          <h2>Producto a cotizar: </h2>
+          <h2>Producto a cotizar: <?php echo $Cotizar['Codigo'] ?></h2>
           <h4><?php echo $Cotizar['Nombre'] ?></h4>
           <img src="<?php echo "img/".$Cotizar['Imagen_1'] ?>" alt="Imagen del producto" class="product-image fixed-size">
-          <p>Descripción del producto: <?php echo "img/".$Cotizar['Descripcion'] ?>. </p>
+          <p>Descripción del producto: <?php $Cotizar['Descripcion'] ?>. </p>
           <p><strong>Precio:</strong> Por definir</p>
           <button class="btn btn-success">Enviar Cotización</button>
         </div>
@@ -77,9 +77,15 @@
         <div class="chat-box">
           <div class="message-container">
 
+            <?php 
+              $Mensajes;
+            if (isset($_SESSION['Mensajes'])){
+                $Mensajes = $_SESSION['Mensajes'][0];
+            } ?>
+
           <div class="message-with-avatar">
                 <img src="img/Cliente1.png" alt="Perfil-Cliente" class="avatar">
-                <div class="message">Hola, estoy interesado en obtener una cotización para este producto.</div>
+                <div class="message"><?php echo  $Mensajes['Mensaje']; ?></div>
             </div>
 
             <div class="message-with-avatar">
@@ -92,10 +98,18 @@
           </div>
         
         </div>
-        <form class="mt-3">
+        <form class="mt-3" action="php/NuevoMensaje.php" method="post">
           <div class="mb-3">
+            <?php   if (isset($_SESSION['Cotizacion'])){
+                        $Code = $_SESSION['Cotizacion'][0];
+
+                      }
+            
+            
+            ?>
+            <input type="hidden" name ="Codigo" value = "<?php echo $Code['Codigo']; ?>">
             <label for="message" class="form-label">Escribe tu mensaje:</label>
-            <textarea class="form-control" id="message" rows="3"></textarea>
+            <textarea class="form-control" id="message" name = "message" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Enviar</button>
         </form>

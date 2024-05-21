@@ -14,16 +14,17 @@ if($conexion->connect_error){
 }
 
 $Mensaje = $_POST['message'];
+$Codigo = $_POST['Codigo'];
 
 
-$Query = "Call Mensajeria('$Mensaje','$Remitente','$Emisor')";
+$Query = "Call Mensajeria('$Mensaje','$Emisor','$Remitente',$Codigo)";
 
 
 $conexion->query($Query);
 
 $conexion->close();
 
-header("location: ../cotizaciones.php");
+header("location: recuperarmensajes.php");
 
 
 

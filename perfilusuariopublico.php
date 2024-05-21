@@ -31,7 +31,7 @@
                 <div class="card-body">
 
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="img/weon.png" alt="Admin" class="rounded-circle" width="150">
+                    <img src="img/<?php echo $_SESSION['Foto']?>" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4><?php echo $_SESSION['Usuario']; ?></h4>
                       <p class="text-secondary mb-1">Usuario</p>
