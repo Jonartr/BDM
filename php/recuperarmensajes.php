@@ -11,12 +11,13 @@ $Cotizar = $_SESSION['Cotizacion'][0];
 $Codigo = $Cotizar['Codigo'];
 $Usuario = $_SESSION['Correo'];
 
+
 if($conexion->connect_error){
     die("Error de conexion".$conexion->connect_error);
 
 }
 
-$Query = "SELECT * FROM CHAT WHERE Codigo = $Codigo AND Emisor = $Usuario";
+$Query = "SELECT * FROM chat WHERE Codigo = '$Codigo' AND Emisor = '$Usuario'";
 
 $result = $conexion->query($Query);
 $Datos = array();
@@ -31,7 +32,7 @@ if ($result->num_rows > 0) {
 
 $conexion->close();
 
-
+header("location: ../cotizaciones.php");
 
 
 ?>

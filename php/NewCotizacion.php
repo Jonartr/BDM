@@ -7,7 +7,7 @@ $_SESSION['Cotizacion'] = array();
 $_SESSION['Cotizacion'][] = $_SESSION['Productos_show'][$Indice];
 
 
-header("location: ../cotizaciones.php")
+header("location: recuperarmensajes.php")
 
 
 

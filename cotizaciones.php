@@ -80,24 +80,46 @@
             <?php 
               $Mensajes;
             if (isset($_SESSION['Mensajes'])){
-                $Mensajes = $_SESSION['Mensajes'][0];
-            } ?>
+                $Contador = count($_SESSION['Mensajes']);
+
+                for ($i = 0; $i < $Contador; $i++ ){
+
+                    $Mensajes = $_SESSION['Mensajes'][$i];
+
+
+
+                    if($Mensajes['Emisor'] == $_SESSION['Correo']){
+
+                
+             ?>
+
+                      <div class="message-container text-end">
+                          <div class="message"><?php echo  $Mensajes['Mensaje']; ?></div>
+                      </div>
+
+              <?php }
+              else{
+              
+              ?>    
 
           <div class="message-with-avatar">
                 <img src="img/Cliente1.png" alt="Perfil-Cliente" class="avatar">
                 <div class="message"><?php echo  $Mensajes['Mensaje']; ?></div>
             </div>
 
-            <div class="message-with-avatar">
-                <img src="img/Cliente1.png" alt="Perfil-Cliente" class="avatar">
-            <div class="message">¿Puedes proporcionarme más información?</div>
+              <?php }
+                }
+              ?>
+
+          
           </div>
 
-          <div class="message-container text-end">
-            <div class="message">Claro, ¿qué información necesitas?</div>
-          </div>
+          
         
         </div>
+
+        <?php } ?>
+
         <form class="mt-3" action="php/NuevoMensaje.php" method="post">
           <div class="mb-3">
             <?php   if (isset($_SESSION['Cotizacion'])){

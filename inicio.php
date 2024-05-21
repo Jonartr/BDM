@@ -97,7 +97,7 @@
                                 <form action="php/NewCotizacion.php" method="post">
                                     <input type="hidden" name="Cotizar" value="<?php echo $PCotizar; ?>">
                                         <button class = "btn btn-primary mx-5 my-3" type="submit" value="<?php echo $PCotizar;?>"
-                                        onclick="alert(value)"
+                                       
                                         >
                                             Pedir cotizacion del producto
                                         </button> 
