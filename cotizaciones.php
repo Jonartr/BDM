@@ -16,7 +16,7 @@
 
 
 <div class="container my-5">
-<h1 class="mb-4 text-center">Cotización</h1>
+<h1 class="mb-4 text-center">Cotización hola que hace se masturba o que hace</h1>
         <br>
 
     <div class="row">
