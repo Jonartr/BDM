@@ -81,8 +81,6 @@ $_SESSION['Opcmysql'] = 1;
           <p id="dataleft" style="color:red;"></p>
           <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
-
-        <p><?php echo $_SESSION['prueba'];?></p>
       </div>
     </div>
   </div>

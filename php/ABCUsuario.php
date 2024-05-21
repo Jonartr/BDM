@@ -24,31 +24,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Genero = $data['genre'];
         $Private = $data['private'];
 
-        $File = $_FILES['avatar']['tmp_name'];
+        $decodeImage = base64_decode($Imagen);
+        $nombre_archivo = basename($Imagen);
+        $nombre_archivo = uniqid().'.jpg';
+        $ruta = "../img/";
 
-        
-        
-
-       $nombre_archivo = basename($Imagen);
-
-       // $ruta = "img/".$nombre_archivo;
-    
-       // move_uploaded_file($nombre_archivo, $ruta);
-
-        
-
-    
-
+        file_put_contents( $ruta.$nombre_archivo, $decodeImage);
+      
        $Query = "CALL abcusuario ('$Correo', '$Usuario', '$Contra','$Rol', '$nombre_archivo', '$Nombre', '$Fecha','$Genero','$Private',1)";
 
       
-   //   $conexion->query($Query);
+      $conexion->query($Query);
     }
 
 
 }
 
-   //$conexion->close();
+   $conexion->close();
 
 
 ?>

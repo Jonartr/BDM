@@ -3,9 +3,9 @@ Este nada mas es para ver pendientes que haya xd
 -Agregar perfil para ver otro usuario desde perfil principal
 -Corregir detalles de productos
 -Validaciones para editar y eliminar
-- Arreglar Visualizacion de categorias
+- Arreglar Visualizacion de categorias terminado 
 - Arreglar Imagen de perfil de usuario desde json 
 - Agregar API extena y middleware
-- Agregar al carrito ( Validaciones pendientes )
-- Proceso de compra
-- Cotizacion 
+- Agregar al carrito ( Validaciones pendientes ) terminado 
+- Proceso de compra pendiente
+- Cotizacion correciones al chat

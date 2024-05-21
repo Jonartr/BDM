@@ -153,7 +153,8 @@
             <li class="nav-item">
               <a href="php/CerrarSesion.php" class="navbar-brand" style="margin-left: 25px;">Cerrar Sesión</a>
             </li>
-             <!--case 3-->
+
+             <!--case 3 chido-->
  <?php
         break;   
 

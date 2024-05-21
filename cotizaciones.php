@@ -11,14 +11,6 @@
 
 <?php include("header.php");
 
-if (isset($_SESSION['Cotizacion'])){
-    $Cotizar = $_SESSION['Cotizacion'][0];
-}
-else{
-  $Cotizar = array();
-}
-
-
 ?>
 <main role="main">
 
@@ -43,6 +35,13 @@ else{
         </div>
         </div>
 
+
+
+  <?php 
+      if (isset($_SESSION['Cotizacion'])){
+          $Cotizar = $_SESSION['Cotizacion'][0];
+      
+ ?>
     <div class="col-md-4">
         <div class="product-info">
           <h2>Producto a cotizar: </h2>
@@ -53,6 +52,25 @@ else{
           <button class="btn btn-success">Enviar Cotización</button>
         </div>
       </div>
+
+  <?php }
+  else{
+  ?>
+
+    <div class="col-md-4">
+            <div class="product-info">
+              <h2>Producto a cotizar: </h2>
+              <h4></h4>
+              <img src="" alt="Imagen del producto" class="product-image fixed-size">
+              <p>Descripción del producto: . </p>
+              <p><strong>Precio:</strong> Por definir</p>
+              <button class="btn btn-success">Enviar Cotización</button>
+            </div>
+          </div>
+
+  <?php }
+  
+  ?>
 
 
       <div class="col-md-6">
