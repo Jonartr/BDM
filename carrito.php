@@ -7,10 +7,18 @@
     <title>Carrito</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+
+
 </head>
 <body>
 
-<?php include("header.php");  ?>
+<?php include("header.php"); 
+
+$Cantidad =1;
+$Indiceglobal;
+?>
 
 <div class="container pb-5 mt-n2 mt-md-n3 ">
     <div class="row">
@@ -36,20 +44,15 @@
                         <!--<div class="font-size-sm"><span class="text-muted mr-2">Size:</span>8.5</div> -->
                         <div class="font-size-sm"><span class="text-muted mr-2"><?php echo $Carrito['Descripcion'] ?></span></div>
                         <div class="font-size-lg text-primary pt-2">$<?php setlocale(LC_MONETARY,'es_MX');
-                              echo number_format($Carrito['Precio'],2);?></div>
+                              echo number_format($Carrito['Precio'] * $Cantidad,2);?></div>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
-                        <label for="quantity1">Cantidad</label>
-                        <input class="form-control form-control-sm" type="number" id="quantity1" value="1">
+                           <label for="quantity<?php echo $i; ?>">Cantidad</label>
+                           <input class="form-control form-control-sm quantity-input" type="number" id="quantity<?php echo $i; ?>" data-product-id="<?php echo $i; ?>" data-price="<?php echo $Carrito['Precio']; ?>" value="<?php echo $Cantidad; ?>" min="1" max="<?php echo $Carrito['Existencias']; ?>">
                     </div>
-                    <!-- <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>Actualizar carrito</button> -->
+
 
                     
                     <form action="php/EliminarCarrito.php" method="post">
@@ -115,7 +118,7 @@
 
                     for($i = 0; $i < $Contador; $i++ ){
                         $Carrito_price =$_SESSION['Carrito'][$i];
-                       $Subtotal = $Carrito_price['Precio'] + $Subtotal; 
+                       $Subtotal = ($Carrito_price['Precio'] * $Cantidad) + $Subtotal; 
                     }
                 }
                 else{
@@ -126,82 +129,75 @@
             ?>
 
           
-            <div class="h3 font-weight-semibold text-center py-3">$<?php 
-             setlocale(LC_MONETARY,'es_MX');
-             echo number_format($Subtotal,2);
-             ?></div>
+                <div class="h3 font-weight-semibold text-center py-3" id="subtotal">$<?php echo number_format($Subtotal, 2); ?></div>
+
+
             <hr>
             <h3 class="h6 pt-4 font-weight-semibold"><span class="badge badge-success mr-2">Nota</span>Comentarios</h3>
             <textarea class="form-control mb-3" id="order-comments" rows="5"></textarea>
-            <a class="btn btn-primary btn-block" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2">
-                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                    <line x1="1" y1="10" x2="23" y2="10"></line>
-                </svg>Proceder al pago</a>
-            <div class="pt-4">
-                <div class="accordion" id="cart-accordion">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="accordion-heading font-weight-semibold"><a href="#promocode" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="promocode">Apply promo code<span class="accordion-indicator"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></span></a></h3>
-                        </div>
-                        <div class="collapse show" id="promocode" data-parent="#cart-accordion">
-                            <div class="card-body">
-                                <form class="needs-validation" novalidate="">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" id="cart-promocode" placeholder="Promo code" required="">
-                                        <div class="invalid-feedback">Porfavor agrega un código válido!</div>
-                                    </div>
-                                    <button class="btn btn-outline-primary btn-block" type="submit">Aplicar código promocional</button>
-                                </form>
+            <a class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2">
+                     <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                          <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>Proceder al pago
+            </a>
+
+                                <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="paymentModalLabel">Método de Pago</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="paymentForm">
+                                        <div class="mb-3">
+                                            <label for="paymentMethod" class="form-label">Método de Pago</label>
+                                            <select class="form-select" id="paymentMethod">
+                                                <option value="tienda">Pago en tienda de conveniencia</option>
+                                                <option value="tarjeta">Pago con tarjeta</option>
+                                            </select>
+                                        </div>
+                                        <div id="cardInfo" style="display: none;">
+                                            <div class="mb-3">
+                                                <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                                                <input type="text" class="form-control" id="cardNumber">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="expiryMonth" class="form-label">Mes de vencimiento</label>
+                                                <input type="text" class="form-control" id="expiryMonth">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="expiryYear" class="form-label">Año de vencimiento</label>
+                                                <input type="text" class="form-control" id="expiryYear">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="cvv" class="form-label">CVV</label>
+                                                <input type="text" class="form-control" id="cvv">
+                                            </div>
+                                            <h5>Datos de domicilio para envío</h5>
+                                            <div class="mb-3">
+                                                <label for="address" class="form-label">Dirección</label>
+                                                <input type="text" class="form-control" id="address">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="city" class="form-label">Ciudad</label>
+                                                <input type="text" class="form-control" id="city">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="postalCode" class="form-label">Código Postal</label>
+                                                <input type="text" class="form-control" id="postalCode">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="proceedPayment">Proceder al pago</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="accordion-heading font-weight-semibold"><a class="collapsed" href="#shipping" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="shipping">Shipping estimates<span class="accordion-indicator"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></span></a></h3>
-                        </div>
-                        <div class="collapse" id="shipping" data-parent="#cart-accordion">
-                            <div class="card-body">
-                                <form class="needs-validation" novalidate="">
-                                    <div class="form-group">
-                                        <select class="form-control custom-select" required="">
-                                            <option value="">Elige tu país</option>
-                                            <option value="Australia">Australia</option>
-                                            <option value="Belgium">Belgium</option>
-                                            <option value="Canada">Canada</option>
-                                            <option value="Finland">Finland</option>
-                                            <option value="Mexico">Mexico</option>
-                                            <option value="New Zealand">New Zealand</option>
-                                            <option value="Switzerland">Switzerland</option>
-                                            <option value="United States">United States</option>
-                                        </select>
-                                        <div class="invalid-feedback">Please choose your country!</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <select class="form-control custom-select" required="">
-                                            <option value="">Choose your city</option>
-                                            <option value="Bern">Bern</option>
-                                            <option value="Brussels">Brussels</option>
-                                            <option value="Canberra">Canberra</option>
-                                            <option value="Helsinki">Helsinki</option>
-                                            <option value="Mexico City">Mexico City</option>
-                                            <option value="Ottawa">Ottawa</option>
-                                            <option value="Washington D.C.">Washington D.C.</option>
-                                            <option value="Wellington">Wellington</option>
-                                        </select>
-                                        <div class="invalid-feedback">Please choose your city!</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="ZIP / Postal code" required="">
-                                        <div class="invalid-feedback">Please provide a valid zip!</div>
-                                    </div>
-                                    <button class="btn btn-outline-primary btn-block" type="submit">Calculate shipping</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
+     
         </div>
     </div>
 </div>
@@ -210,122 +206,89 @@
 
 <?php include("footer.php");?>
 
-<script>
-$(document).ready(function(){
-    $('#quantity1').change(function(){
-        var quantity = $(this).val(); // obtienes la cantidad
-        var price = <?php echo $Carrito['Precio']; ?>; // obtienes el precio del producto
-        var total = quantity * price; // calculas el total
-
-        // formateas el total a 2 decimales y lo muestras en el div del precio
-        $('.font-size-lg').text('$' + total.toFixed(2));
-    });
-});
 
 
-
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+<script>
+    $(document).ready(function(){
+        function recalculateSubtotal() {
+            var subtotal = 0;
+            $('.quantity-input').each(function(){
+                var qty = $(this).val();
+                var prc = $(this).data('price');
+                subtotal += qty * prc;
+            });
+            $('#subtotal').text('$' + subtotal.toFixed(2));
+        }
+
+        // Manejar el cambio de cantidad
+        $('.quantity-input').change(function(){
+            var quantity = $(this).val();
+            var maxQuantity = $(this).attr('max');
+            var price = $(this).data('price');
+
+            if(quantity < 1) {
+                quantity = 1;
+                $(this).val(quantity);
+            } else if(quantity > maxQuantity) {
+                quantity = maxQuantity;
+                $(this).val(quantity);
+                alert('La cantidad ingresada excede el máximo permitido de ' + maxQuantity + ' unidades.');
+            }
+
+            var total = quantity * price;
+
+            // Actualizar el precio del producto en la interfaz
+            $(this).closest('.d-sm-flex').find('.font-size-lg').text('$' + total.toFixed(2));
+
+            // Recalcular el subtotal
+            recalculateSubtotal();
+        });
+
+        // Recalcular el subtotal al cargar la página
+        recalculateSubtotal();
+
+        $('#paymentMethod').change(function(){
+            if ($(this).val() === 'tarjeta') {
+                $('#cardInfo').show();
+            } else {
+                $('#cardInfo').hide();
+            }
+        });
+
+        $('#proceedPayment').click(function(){
+            var paymentMethod = $('#paymentMethod').val();
+            if(paymentMethod === 'tarjeta') {
+                var cardNumber = $('#cardNumber').val();
+                var expiryMonth = $('#expiryMonth').val();
+                var expiryYear = $('#expiryYear').val();
+                var cvv = $('#cvv').val();
+                var address = $('#address').val();
+                var city = $('#city').val();
+                var postalCode = $('#postalCode').val();
+
+                // Aquí puedes añadir la lógica para procesar el pago con tarjeta
+                console.log("Pago con tarjeta:", cardNumber, expiryMonth, expiryYear, cvv, address, city, postalCode);
+            } else {
+                // Aquí puedes añadir la lógica para procesar el pago en tienda de conveniencia
+                console.log("Pago en tienda de conveniencia");
+            }
+
+            // Cerrar la ventana modal
+            $('#paymentModal').modal('hide');
+        });
+    });
+</script>
+
+
+
+
+
 </body>
 </html>
 
 
 
-
-   <!-- <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                <div class="media d-block d-sm-flex text-center text-sm-left">
-                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="img/AppleWatch9.png" alt="Producto 2"></a>
-                    <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">Apple Watch Series 9</a></h3>
-                    
-                        <div class="font-size-sm"><span class="text-muted mr-2">Color:</span>Gris espacial</div>
-                        <div class="font-size-lg text-primary pt-2">$2,800.25</div>
-                    </div>
-                </div>
-                <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
-                
-                    <div class="form-group mb-2">
-                        <label for="quantity2">Cantidad</label>
-                        <input class="form-control form-control-sm" type="number" id="quantity2" value="1">
-                    </div>
-
-                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>Actualizar carrito</button>
-
-                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>Quitar</button>
-                </div>
-            </div>
-            
-          
-            <div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
-                <div class="media d-block d-sm-flex text-center text-sm-left">
-                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="img/iPhone15.png" alt="Producto 3"></a>
-                    <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">iPhone 15</a></h3>
-                     
-                        <div class="font-size-lg text-primary pt-2">$19,999.79</div>
-                    </div>
-                </div>
-                <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
-                    <div class="form-group mb-2">
-                        <label for="quantity3">Cantidad</label>
-                        <input class="form-control form-control-sm" type="number" id="quantity3" value="1">
-                    </div>
-                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>Actualizar carrito</button>
-                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>Quitar</button>
-                </div>
-            </div>
-           
-
-            <div class="d-sm-flex justify-content-between my-4">
-                <div class="media d-block d-sm-flex text-center text-sm-left">
-                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="img/AirPodsPro2.png" alt="Producto 4"></a>
-                    <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">AirPods Pro 2</a></h3>
-                     
-                        <div class="font-size-lg text-primary pt-2">$5,8000.99</div>
-                    </div>
-                </div>
-                <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
-                    <div class="form-group mb-2">
-                        <label for="quantity4">Cantidad</label>
-                        <input class="form-control form-control-sm" type="number" id="quantity4" value="1">
-                    </div>
-                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>Actualizar carrito</button>
-                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>Quitar</button>
-                </div>
-            </div>
-        </div> -->
+     
