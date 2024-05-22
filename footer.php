@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer</title>
+    <link rel="stylesheet" href="css/footer.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
@@ -14,14 +15,20 @@
   <footer class="text-center text-white" style="background-color: #0a4275;">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
-      <!-- Section: CTA -->
-      <section class="">
-        <p class="d-flex justify-content-center align-items-center">
-          <span class="me-3">Registrate gratis aquí</span>
-          <a href="registro.php" class="btn btn-outline-light btn-rounded">Registrarse ahora!</a>
-        </p>
-      </section>
-      <!-- Section: CTA -->
+       <!-- Nuevo formulario para suscribirse al newsletter -->
+       <section class="mt-4 mb-3">
+        <h3>Suscribete a nuestro boletín de noticias<h3>
+        <div class="d-flex justify-content-center">
+            <form action="procesar_suscripcion.php" method="POST" class="form-inline justify-content-center">
+                <div class="input-group">
+                    <input type="email"  class="form-control-sm text-center" placeholder="Tu correo electrónico" name="email" required>
+                    <button class="btn btn-outline-light" type="submit">Suscribirse</button>
+                </div>
+            </form>
+</div>
+        </section>
+        <!-- Fin del formulario para suscribirse al newsletter -->
+
     </div>
     <!-- Grid container -->
 
