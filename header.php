@@ -178,12 +178,12 @@
  ?>
         <!---->  
           <li class="nav-item"> 
-            <a href= "perfiladmin.php" class= "navbar-brand me-2 my-2 my-sm-0">
+            <a href= "perfiladmin.php" class= "navbar-brand">
             <?php  echo $_SESSION['Usuario'];?></a>
           </li>
 
           <li class="nav-item">
-            <a href="php/CerrarSesion.php" class="nav-link">Cerrar Sesión</a>
+            <a href="php/CerrarSesion.php" class="navbar-brand my-2 my-sm-0">Cerrar Sesión</a>
           </li>
         <!---->
       <?php 
