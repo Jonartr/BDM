@@ -45,7 +45,8 @@ $Indiceglobal;
                         <div class="font-size-sm"><span class="text-muted mr-2"><?php echo $Carrito['Descripcion'] ?></span></div>
                         <div class="font-size-lg text-primary pt-2">$<?php setlocale(LC_MONETARY,'es_MX');
                               echo number_format($Carrito['Precio'] * $Cantidad,2);?></div>
-                    </div>
+                        </div>
+                        
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
@@ -249,6 +250,20 @@ $Indiceglobal;
 
         // Recalcular el subtotal al cargar la página
         recalculateSubtotal();
+
+        $.ajax({
+            url: 'ActualizarCarrito.php',
+            method: 'POST',
+            data: {
+                index: index,
+                quantity: quantity,
+                total: total,
+                subtotal: subtotal
+            },
+            success: function(response) {
+                console.log(response); // Aquí puedes manejar la respuesta del servidor
+            }
+        });
 
         $('#paymentMethod').change(function(){
             if ($(this).val() === 'tarjeta') {
