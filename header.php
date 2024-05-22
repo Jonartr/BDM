@@ -72,7 +72,7 @@
             if($Privacidad == 1){
             ?>
             <li class="nav-item"> 
-              <a href= "perfilvendedor.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilvendedor.php" class= "navbar-brand">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
 
@@ -81,14 +81,14 @@
             ?>
 
             <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilusuarioprivado.php" class= "navbar-brand">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li> 
 
             <?php } ?>
   
             <li class="nav-item">
-              <a href="php/CerrarSesion.php" class= "navbar-brand" style="margin-left: 25px;">Cerrar Sesión</a>
+              <a href="php/CerrarSesion.php" class= "navbar-brand">Cerrar Sesión</a>
             </li>
           <!--case 1-->
 <?php //////
@@ -102,7 +102,7 @@
               if($Privacidad == 1){
               ?>
               <li class="nav-item"> 
-                <a href= "perfilvendedor.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+                <a href= "perfilvendedor.php" class= "navbar-brand">
                 <?php  echo $_SESSION['Usuario'];?></a>
               </li>
 
@@ -111,7 +111,7 @@
               ?>
 
               <li class="nav-item"> 
-                <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+                <a href= "perfilusuarioprivado.php" class= "navbar-brand">
                 <?php  echo $_SESSION['Usuario'];?></a>
               </li> 
 
@@ -119,7 +119,7 @@
 
   
             <li class="nav-item">
-              <a href="php/CerrarSesion.php" class= "navbar-brand my-2 my-sm-0 " style="margin-left: 25px;">Cerrar Sesión</a>
+              <a href="php/CerrarSesion.php" class= "navbar-brand my-2 my-sm-0 ">Cerrar Sesión</a>
             </li>
              <!--case 2-->
  <?php    
@@ -134,7 +134,7 @@
             if($Privacidad == 1){
             ?>
             <li class="nav-item"> 
-              <a href= "perfilvendedor.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilvendedor.php" class= "navbar-brand">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
 
@@ -143,7 +143,7 @@
             ?>
 
             <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilusuarioprivado.php" class= "navbar-brand">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li> 
 
@@ -151,7 +151,7 @@
 
   
             <li class="nav-item">
-              <a href="php/CerrarSesion.php" class="navbar-brand" style="margin-left: 25px;">Cerrar Sesión</a>
+              <a href="php/CerrarSesion.php" class="navbar-brand">Cerrar Sesión</a>
             </li>
 
              <!--case 3 chido-->
@@ -162,12 +162,12 @@
 ?>    
             <!--case 4-->
             <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "navbar-brand" style="margin-left: 750px; color:antiquewhite">
+              <a href= "perfilusuarioprivado.php" class= "navbar-brand">
               <?php  echo $_SESSION['Usuario'];?></a>
             </li>
   
             <li class="nav-item">
-              <a href="php/CerrarSesion.php" class="navbar-brand my-2 my-sm-0" style="margin-left: 25px;">Cerrar Sesión</a>
+              <a href="php/CerrarSesion.php" class="navbar-brand my-2 my-sm-0">Cerrar Sesión</a>
             </li>
 
 
@@ -178,12 +178,12 @@
  ?>
         <!---->  
           <li class="nav-item"> 
-            <a href= "perfiladmin.php" class= "navbar-brand my-2 my-sm-0" style="margin-left: 750px; color:antiquewhite">
+            <a href= "perfiladmin.php" class= "navbar-brand me-2 my-2 my-sm-0">
             <?php  echo $_SESSION['Usuario'];?></a>
           </li>
 
           <li class="nav-item">
-            <a href="php/CerrarSesion.php" class="navbar-brand my-2 my-sm-0" style="margin-left: 25px;">Cerrar Sesión</a>
+            <a href="php/CerrarSesion.php" class="nav-link">Cerrar Sesión</a>
           </li>
         <!---->
       <?php 
