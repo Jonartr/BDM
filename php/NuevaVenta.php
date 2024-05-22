@@ -12,7 +12,7 @@ if ($conexion->connect_error) {
         $CarritoTotal = $_SESSION['Carrito'];
         $Total = $_SESSION['Subtotal'];
 
-        $Query = $conexion->prepare("INSERT INTO venta (FechaVenta, CantidadVenta, TotalVenta, IDCat, Codigo, Correo) VALUES (NOW(), ?, ?, ?, ?, ?)");
+        $Query = $conexion->prepare("CALL InsertarVenta(?, ?, ?, ?, ?)");
 
         foreach ($_SESSION['Carrito'] as $item) {
             $CantidadVenta = $item['CantidadComprar'];

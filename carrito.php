@@ -36,7 +36,6 @@ $Indiceglobal;
                     $Carrito = $_SESSION['Carrito'][$i];
                 
                 ?>     
-            <p><?php echo   $Carrito['CantidadComprar'] ?></p>
             <div class="d-sm-flex justify-content-between my-4 pb-4 ">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="<?php echo "img/".$Carrito['Imagen_1']?>" alt="Producto 1"></a>
@@ -45,7 +44,7 @@ $Indiceglobal;
                         <!--<div class="font-size-sm"><span class="text-muted mr-2">Size:</span>8.5</div> -->
                         <div class="font-size-sm"><span class="text-muted mr-2"><?php echo $Carrito['Descripcion'] ?></span></div>
                         <div class="font-size-lg text-primary pt-2">$<?php setlocale(LC_MONETARY,'es_MX');
-                              echo number_format($Carrito['Precio'] * $Cantidad,2);?></div>
+                              echo number_format($Carrito['Precio'] * $Carrito['CantidadComprar'],2);?></div>
                         </div>
                         
                 </div>
