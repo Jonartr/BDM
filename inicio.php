@@ -30,7 +30,8 @@
               
                 <div class="col-sm-6 col-lg-3 mb-2-6">
                     <div class="card-wrapper mb-4">
-                        <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_1']; ?>" alt="Imagen 1" width="75%" height="50%"></div>
+                        <div class="card-img"><img src="<?php echo "img/".$Producto['Imagen_1']; ?>" alt="Imagen 1" width="50%" height="50%"></div>
+                       <?php  if($Producto['TipoVenta'] == 1){  ?> 
                         <div class="card-body">
                             <div>
                                 <!-- <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a> -->
@@ -42,6 +43,7 @@
                                
                             </div>
                         </div>
+                        <?php }?>
                     </div>
                     <div class="text-center">
                         <!--VALORES PARA PODER AGREGARLOS AL CARRITO DE COMPRAS-->

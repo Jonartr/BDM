@@ -19,194 +19,110 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-  <div class="collapse navbar-collapse row" id="navbarNavDropdown">
-    <ul class="navbar-nav mx-4">
-      
-      <li class="nav-item">
-      <a class="nav-link" href="php/ShowProducto.php">Inicio</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="productos.php">Mis productos</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="categorias.php">Categorías</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="cotizaciones.php">Cotizaciones</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="Listas.php">Mis listas</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="carrito.php">Carrito</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="php/AutorizarProductos.php">Aprobaciones de productos</a>
-      </li>
-
-
-<!-- Formulario de búsqueda -->
-<form class="d-flex ms-auto" action="php/Buscar.php" method="GET">
-    <input class="form-control me-2" type="search" name="search" placeholder="Buscar..." aria-label="Buscar">
-    <button class="btn btn-outline-info" type="submit">Buscar</button>
-</form>
-
-     
-<?php if (isset($_SESSION['Usuario'])){  /*---aa--- */
-    
-    $Rol = $_SESSION['Rol'];
-    $Privacidad = $_SESSION['Privacidad'];
-
-    switch($Rol){
-        case 1:
-?>    <!--case 1-->   
-
-            <?php
-
-            if($Privacidad == 1){
-            ?>
-            <li class="nav-item"> 
-              <a href= "perfilvendedor.php" class= "navbar-brand">
-              <?php  echo $_SESSION['Usuario'];?></a>
-            </li>
-
-            <?php }
-            else{
-            ?>
-
-            <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "navbar-brand">
-              <?php  echo $_SESSION['Usuario'];?></a>
-            </li> 
-
-            <?php } ?>
-  
-            <li class="nav-item">
-              <a href="php/CerrarSesion.php" class= "navbar-brand">Cerrar Sesión</a>
-            </li>
-          <!--case 1-->
-<?php //////
-        break; 
-        
-        case 2:
-?>   
-            <!--case 2-->
-            <?php
-
-              if($Privacidad == 1){
-              ?>
-              <li class="nav-item"> 
-                <a href= "perfilvendedor.php" class= "navbar-brand">
-                <?php  echo $_SESSION['Usuario'];?></a>
-              </li>
-
-              <?php }
-              else{
-              ?>
-
-              <li class="nav-item"> 
-                <a href= "perfilusuarioprivado.php" class= "navbar-brand">
-                <?php  echo $_SESSION['Usuario'];?></a>
-              </li> 
-
-              <?php } ?>
-
-  
-            <li class="nav-item">
-              <a href="php/CerrarSesion.php" class= "navbar-brand my-2 my-sm-0 ">Cerrar Sesión</a>
-            </li>
-             <!--case 2-->
- <?php    
-        break;
-        
-        case 3:
- ?>    
-            <!--case 3-->
-
-                        <?php
-
-            if($Privacidad == 1){
-            ?>
-            <li class="nav-item"> 
-              <a href= "perfilvendedor.php" class= "navbar-brand">
-              <?php  echo $_SESSION['Usuario'];?></a>
-            </li>
-
-            <?php }
-            else{
-            ?>
-
-            <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "navbar-brand">
-              <?php  echo $_SESSION['Usuario'];?></a>
-            </li> 
-
-            <?php } ?>
-
-  
-            <li class="nav-item">
-              <a href="php/CerrarSesion.php" class="navbar-brand">Cerrar Sesión</a>
-            </li>
-
-             <!--case 3 chido-->
- <?php
-        break;   
-
-        case 4:
-?>    
-            <!--case 4-->
-            <li class="nav-item"> 
-              <a href= "perfilusuarioprivado.php" class= "navbar-brand">
-              <?php  echo $_SESSION['Usuario'];?></a>
-            </li>
-  
-            <li class="nav-item">
-              <a href="php/CerrarSesion.php" class="navbar-brand my-2 my-sm-0">Cerrar Sesión</a>
-            </li>
-
-
-<?php
-        break;    
-    }
-      
- ?>
-        <!---->  
-          <li class="nav-item"> 
-            <a href= "perfiladmin.php" class= "navbar-brand">
-            <?php  echo $_SESSION['Usuario'];?></a>
+      <div class="collapse navbar-collapse row" id="navbarNavDropdown">
+        <ul class="navbar-nav mx-4">
+          
+          <li class="nav-item">
+          <a class="nav-link" href="php/ShowProducto.php">Inicio</a>
           </li>
 
           <li class="nav-item">
-            <a href="php/CerrarSesion.php" class="navbar-brand my-2 my-sm-0">Cerrar Sesión</a>
+            <a class="nav-link" href="productos.php">Mis productos</a>
           </li>
-        <!---->
-      <?php 
-        } 
-        else{ 
-       ?>
 
-<ul class="navbar-nav ms-auto">
-<li class="nav-item" >
-        <a class="btn btn-outline-success  me-2 my-2 my-sm-0" href="registro.php">Registrarse</a>
-    </li>
-    <li class="nav-item" style="margin-right: 36px;">
-        <a class="btn btn-success my-2 my-sm-0" href="login.php">Iniciar Sesión</a>
-    </li>
-</ul>
-      <!---->
-      <?php } ?>
+          <li class="nav-item">
+            <a class="nav-link" href="categorias.php">Categorías</a>
+          </li>
 
-    </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="cotizaciones.php">Cotizaciones</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="Listas.php">Mis listas</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="carrito.php">Carrito</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="php/AutorizarProductos.php">Aprobaciones de productos</a>
+          </li>
 
 
-    </div>
-  </div>
+    <!-- Formulario de búsqueda -->
+    <form class="d-flex ms-auto" action="php/Buscar.php" method="GET">
+        <input class="form-control me-2" type="search" name="search" placeholder="Buscar..." aria-label="Buscar">
+        <button class="btn btn-outline-info" type="submit">Buscar</button>
+    </form>
+
+      
+
+
+        <ul class="navbar-nav ms-auto">
+
+
+            <?php if(isset($_SESSION['Correo'])){ 
+                $Pagina;
+                $Rol = $_SESSION['Rol'];
+
+
+                switch($Rol){
+                   case 1:
+                      $Pagina = "perfilvendedor.php";
+                    break;
+                   case 2:
+                      $Pagina = "perfilusuariopublico.php";
+                    break;
+                    case 3:
+                        $Pagina = "perfiladmin.php";
+                    break;
+
+                }
+                
+              
+              ?>
+
+
+              
+            <li class="nav-item" >
+                <a class="btn btn-primary  me-2 my-2 my-sm-0" href="<?php echo $Pagina;?>"><?php echo $_SESSION['Usuario']?></a>
+            </li>
+
+
+            <li class="nav-item" style="margin-right: 36px;">
+                <a class="btn btn-primary my-2 my-sm-0" href="php/CerrarSesion.php">Cerrar Sesión</a>
+            </li>
+
+
+            <?php }
+            
+            else{
+            ?>  
+
+
+            <li class="nav-item" >
+                <a class="btn btn-outline-success  me-2 my-2 my-sm-0" href="registro.php">Registrarse</a>
+            </li>
+
+
+            <li class="nav-item" style="margin-right: 36px;">
+                <a class="btn btn-success my-2 my-sm-0" href="login.php">Iniciar Sesión</a>
+            </li>
+
+            <?php }?>
+            
+            </ul>
+              <!---->
+
+
+        </ul>
+
+
+        </div>
+     </div>
+
 </nav>
 
 </header>
