@@ -1,18 +1,29 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $productId = $_POST['id'];
-    $newQuantity = $_POST['quantity'];
-    $subtotal = 0.00;
+if (isset($_POST['index']) && isset($_POST['quantity'])) {
+    $index = $_POST['index'];
+    $quantity = $_POST['quantity'];
 
-    foreach ($_SESSION['Carrito'] as &$producto) {
-        if ($producto['ID'] == $productId) {
-            $producto['Cantidad'] = $newQuantity;
-        }
-        $subtotal += $producto['Precio'] * $producto['Cantidad'];
+   
+    $_SESSION['Carrito'][$index]['CantidadComprar'] = $quantity;
+
+  
+    $subtotal = 0;
+    foreach ($_SESSION['Carrito'] as $item) {
+        $subtotal += $item['Precio'] * $item['CantidadComprar'];
     }
 
-    echo json_encode(['subtotal' => $subtotal]);
+   
+
+    echo json_encode([
+        'success' => true,
+        'subtotal' => $subtotal
+    ]);
+} else {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Datos inválidos'
+    ]);
 }
 ?>
