@@ -265,9 +265,7 @@ $Indiceglobal;
                 var expiryMonth = $('#expiryMonth').val();
                 var expiryYear = $('#expiryYear').val();
                 var cvv = $('#cvv').val();
-                var address = $('#address').val();
-                var city = $('#city').val();
-                var postalCode = $('#postalCode').val();
+
 
                 // Aquí puedes añadir la lógica para procesar el pago con tarjeta
                 console.log("Pago con tarjeta:", cardNumber, expiryMonth, expiryYear, cvv, address, city, postalCode);
@@ -275,6 +273,10 @@ $Indiceglobal;
                 // Aquí puedes añadir la lógica para procesar el pago en tienda de conveniencia
                 console.log("Pago en tienda de conveniencia");
             }
+
+            var address = $('#address').val();
+            var city = $('#city').val();
+            var postalCode = $('#postalCode').val();
 
             // Cerrar la ventana modal
             $('#paymentModal').modal('hide');
