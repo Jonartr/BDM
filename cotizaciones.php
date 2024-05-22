@@ -16,7 +16,7 @@
 
 
 <div class="container my-5">
-<h1 class="mb-4 text-center">Cotización hola que hace se masturba o que hace</h1>
+<h1 class="mb-4 text-center">Cotización </h1>
         <br>
 
     <div class="row">
@@ -44,12 +44,40 @@
  ?>
     <div class="col-md-4">
         <div class="product-info">
-          <h2>Producto a cotizar: <?php echo $Cotizar['Codigo'] ?></h2>
+          <!--Detalles del producto-->
+          <h2>Producto a cotizar:</h2>
+          <h4>SKU: <?php echo $Cotizar['Codigo'] ?></h4>
           <h4><?php echo $Cotizar['Nombre'] ?></h4>
           <img src="<?php echo "img/".$Cotizar['Imagen_1'] ?>" alt="Imagen del producto" class="product-image fixed-size">
           <p>Descripción del producto: <?php $Cotizar['Descripcion'] ?>. </p>
           <p><strong>Precio:</strong> Por definir</p>
-          <button class="btn btn-success">Enviar Cotización</button>
+
+          <!--Datos a llenar de cotizacion solo aparecera para el vendedor-->
+
+        <?php if ($Cotizar['Usuario'] == $_SESSION['Correo'] && $_SESSION['Rol'] == 1){?>
+         <form action="">
+                <div  class="mb-3">
+                  <label for="Detalles"> Detalles de cotizacion</label>
+                  <textarea class="form-control" id="Detalles" name = "Detalles" rows="3"></textarea>
+
+                </div>
+
+                <div  class="mb-3">
+                  <label for="Cantidad"> Cantidad preparar</label>
+                  <input type="text" id = "Cantidad" name="Cantidad">
+                </div >
+
+                <div  class="mb-3">
+                  <label for="Precio"> Precio de cotizacion</label>
+                  <input type="text" id = "Precio" name = "Precio">
+                </div>
+                
+                <button class="btn btn-success" type = "submit">Enviar Cotización</button>
+          </form>       
+        <?php }?>
+
+
+
         </div>
       </div>
 
@@ -62,7 +90,7 @@
               <h2>Producto a cotizar: </h2>
               <h4></h4>
               <img src="" alt="Imagen del producto" class="product-image fixed-size">
-              <p>Descripción del producto: . </p>
+              <p>Descripción del producto:</p>
               <p><strong>Precio:</strong> Por definir</p>
               <button class="btn btn-success">Enviar Cotización</button>
             </div>
@@ -76,6 +104,7 @@
       <div class="col-md-6">
         <div class="chat-box">
           <div class="message-container">
+                
 
             <?php 
               $Mensajes;
@@ -86,11 +115,8 @@
 
                     $Mensajes = $_SESSION['Mensajes'][$i];
 
-
-
                     if($Mensajes['Emisor'] == $_SESSION['Correo']){
 
-                
              ?>
 
                       <div class="message-container text-end">
@@ -111,10 +137,7 @@
                 }
               ?>
 
-          
           </div>
-
-          
         
         </div>
 
@@ -137,11 +160,8 @@
         </form>
       </div>
 
-     
-
-
-
     </div>
+
   </div>
 
 </main>

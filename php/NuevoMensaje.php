@@ -13,6 +13,9 @@ if($conexion->connect_error){
 
 }
 
+
+
+
 $Mensaje = $_POST['message'];
 $Codigo = $_POST['Codigo'];
 

@@ -17,7 +17,7 @@ if($conexion->connect_error){
 
 }
 
-$Query = "SELECT * FROM chat WHERE Codigo = '$Codigo' AND Emisor = '$Usuario'";
+$Query = "SELECT * FROM chat WHERE Codigo = '$Codigo' AND (Emisor = '$Usuario' OR Remitente = '$Usuario')";
 
 $result = $conexion->query($Query);
 $Datos = array();

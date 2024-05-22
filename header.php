@@ -21,36 +21,59 @@
 
       <div class="collapse navbar-collapse row" id="navbarNavDropdown">
         <ul class="navbar-nav mx-4">
-          
-          <li class="nav-item">
-          <a class="nav-link" href="php/ShowProducto.php">Inicio</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="productos.php">Mis productos</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="categorias.php">Categorías</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="cotizaciones.php">Cotizaciones</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="Listas.php">Mis listas</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="carrito.php">Carrito</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="php/AutorizarProductos.php">Aprobaciones de productos</a>
-          </li>
 
 
+
+              <li class="nav-item">
+                   <?php if (isset($_SESSION['Correo'])){?>
+                        <a class="nav-link" href="php/ShowProducto.php">Inicio</a>
+                   <?php }
+                   else{ ?> 
+                        <a class="nav-link" href="login.php">Inicio</a>
+                   <?php }?>
+              </li>
+
+
+          <?php if (isset($_SESSION['Correo'])){?>
+
+            
+
+              <?php if ($_SESSION['Rol'] == 1){?>
+              <li class="nav-item">
+                <a class="nav-link" href="productos.php">Mis productos</a>
+              </li>
+
+              <?php } ?>
+
+              <li class="nav-item">
+                <a class="nav-link" href="categorias.php">Categorías</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="cotizaciones.php">Cotizaciones</a>
+              </li>
+
+              <?php if ($_SESSION['Rol'] == 2){?>
+              <li class="nav-item">
+                <a class="nav-link" href="Listas.php">Mis listas</a>
+              </li>
+              <?php } ?>
+
+              <?php if ($_SESSION['Rol'] == 2){?>
+              <li class="nav-item">
+                <a class="nav-link" href="carrito.php">Carrito</a>
+              </li>
+              <?php } ?>
+
+              <?php if ($_SESSION['Rol'] == 3){?>
+              <li class="nav-item">
+                <a class="nav-link" href="php/AutorizarProductos.php">Aprobaciones de productos</a>
+              </li>
+              <?php } ?>  
+
+           <?php } ?>   
+           
+           
     <!-- Formulario de búsqueda -->
     <form class="d-flex ms-auto" action="php/Buscar.php" method="GET">
         <input class="form-control me-2" type="search" name="search" placeholder="Buscar..." aria-label="Buscar">

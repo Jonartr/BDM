@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/carrito.css">
     <title>Carrito</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
@@ -35,7 +35,8 @@
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#"><?php echo $Carrito['Nombre'] ?></a></h3>
                         <!--<div class="font-size-sm"><span class="text-muted mr-2">Size:</span>8.5</div> -->
                         <div class="font-size-sm"><span class="text-muted mr-2"><?php echo $Carrito['Descripcion'] ?></span></div>
-                        <div class="font-size-lg text-primary pt-2"><?php echo "$".$Carrito['Precio']?></div>
+                        <div class="font-size-lg text-primary pt-2">$<?php setlocale(LC_MONETARY,'es_MX');
+                              echo number_format($Carrito['Precio'],2);?></div>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
@@ -125,7 +126,10 @@
             ?>
 
           
-            <div class="h3 font-weight-semibold text-center py-3">$<?php echo $Subtotal ?></div>
+            <div class="h3 font-weight-semibold text-center py-3">$<?php 
+             setlocale(LC_MONETARY,'es_MX');
+             echo number_format($Subtotal,2);
+             ?></div>
             <hr>
             <h3 class="h6 pt-4 font-weight-semibold"><span class="badge badge-success mr-2">Nota</span>Comentarios</h3>
             <textarea class="form-control mb-3" id="order-comments" rows="5"></textarea>
@@ -205,6 +209,22 @@
 
 
 <?php include("footer.php");?>
+
+<script>
+$(document).ready(function(){
+    $('#quantity1').change(function(){
+        var quantity = $(this).val(); // obtienes la cantidad
+        var price = <?php echo $Carrito['Precio']; ?>; // obtienes el precio del producto
+        var total = quantity * price; // calculas el total
+
+        // formateas el total a 2 decimales y lo muestras en el div del precio
+        $('.font-size-lg').text('$' + total.toFixed(2));
+    });
+});
+
+
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

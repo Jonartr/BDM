@@ -46,7 +46,7 @@
                   $Categoria = $_SESSION['Categoria'][$i];
               ?>
 
-                <option value="<?php echo $Categoria['ID_Cat']; ?>"><?php echo $Categoria['Nombre'];  ?></option>
+                <option value="<?php echo $Categoria['ID_Cat'];?>"><?php echo $Categoria['Nombre'];  ?></option>
 
               <?php }
               }?>
