@@ -13,9 +13,9 @@
 <?php include("header.php");?>
 
 
-<div class="container my-5">
+<div class="container my-5 cuadradito border border-primary rounded p-4" style="background-color: #FFFFF;">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <h2 class="text-center mb-4">Iniciar Sesión</h2>
         <form action="php/IniciarSesion.php" method="post" id="login">
           <div class="mb-3">

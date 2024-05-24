@@ -25,3 +25,10 @@ body {
     background-color: #0056b3;
     border-color: #0056b3;
   }
+
+  .cuadradito{
+   
+    max-width: 250px; /* Puedes ajustar este valor según tus necesidades */
+    margin-left: auto;
+    margin-right: auto;
+}
