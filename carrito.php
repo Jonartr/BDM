@@ -36,7 +36,6 @@ $Indiceglobal;
                     $Carrito = $_SESSION['Carrito'][$i];
                 
                 ?>     
-
             <div class="d-sm-flex justify-content-between my-4 pb-4 ">
                 <div class="media d-block d-sm-flex text-center text-sm-left">
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="<?php echo "img/".$Carrito['Imagen_1']?>" alt="Producto 1"></a>
@@ -45,14 +44,14 @@ $Indiceglobal;
                         <!--<div class="font-size-sm"><span class="text-muted mr-2">Size:</span>8.5</div> -->
                         <div class="font-size-sm"><span class="text-muted mr-2"><?php echo $Carrito['Descripcion'] ?></span></div>
                         <div class="font-size-lg text-primary pt-2">$<?php setlocale(LC_MONETARY,'es_MX');
-                              echo number_format($Carrito['Precio'] * $Cantidad,2);?></div>
+                              echo number_format($Carrito['Precio'] * $Carrito['CantidadComprar'],2);?></div>
                         </div>
                         
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
                            <label for="quantity<?php echo $i; ?>">Cantidad</label>
-                           <input class="form-control form-control-sm quantity-input" type="number" id="quantity<?php echo $i; ?>" data-product-id="<?php echo $i; ?>" data-price="<?php echo $Carrito['Precio']; ?>" value="<?php echo $Cantidad; ?>" min="1" max="<?php echo $Carrito['Existencias']; ?>">
+                           <input class="form-control form-control-sm quantity-input" type="number" id="quantity<?php echo $i; ?>" data-index="<?php echo $i; ?>" data-price="<?php echo $Carrito['Precio']; ?>" value="<?php echo $Cantidad?>" min="1" max="<?php echo $Carrito['Existencias']?>">
                     </div>
 
 
@@ -120,7 +119,7 @@ $Indiceglobal;
 
                     for($i = 0; $i < $Contador; $i++ ){
                         $Carrito_price =$_SESSION['Carrito'][$i];
-                       $Subtotal = ($Carrito_price['Precio'] * $Cantidad) + $Subtotal; 
+                       $Subtotal = ($Carrito_price['Precio'] * $Carrito_price['CantidadComprar']) + $Subtotal; 
                     }
                 }
                 else{
@@ -131,7 +130,7 @@ $Indiceglobal;
             ?>
 
           
-                <div class="h3 font-weight-semibold text-center py-3" id="subtotal">$<?php echo number_format($Subtotal, 2); ?></div>
+                <div class="h3 font-weight-semibold text-center py-3" id="subtotal">$<?php echo number_format($_SESSION['Subtotal'], 2); ?></div>
 
 
             <hr>
@@ -191,7 +190,10 @@ $Indiceglobal;
                                                 <input type="text" class="form-control" id="postalCode">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary" id="proceedPayment">Proceder al pago</button>
+                                        <button type="button" class="btn btn-primary" id="proceedPayment">
+                                        <a href="php/NuevaVenta.php" class="text-decoration-none" style="color: white;"> Proceder al pago</a>    
+                                       
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -216,55 +218,64 @@ $Indiceglobal;
 <script>
     $(document).ready(function(){
         function recalculateSubtotal() {
-            var subtotal = 0;
-            $('.quantity-input').each(function(){
-                var qty = $(this).val();
-                var prc = $(this).data('price');
-                subtotal += qty * prc;
-            });
-            $('#subtotal').text('$' + subtotal.toFixed(2));
+        var subtotal = 0;
+        $('.quantity-input').each(function(){
+            var qty = $(this).val();
+            var prc = $(this).data('price');
+            subtotal += qty * prc;
+        });
+        $('#subtotal').text('$' + subtotal.toFixed(2));
+    }
+
+    // Manejar el cambio de cantidad
+    $('.quantity-input').change(function(){
+        var index = $(this).data('index'); // Asegúrate de obtener el índice correctamente
+        var quantity = $(this).val();
+        var price = $(this).data('price');
+        
+        // Validar la cantidad
+        if(quantity < 1) {
+            quantity = 1;
+            $(this).val(quantity);
         }
 
-        // Manejar el cambio de cantidad
-        $('.quantity-input').change(function(){
-            var quantity = $(this).val();
-            var maxQuantity = $(this).attr('max');
-            var price = $(this).data('price');
+        // Calcular el total del producto
+        var total = quantity * price;
+        $('#product-total-' + index).text('$' + total.toFixed(2));
 
-            if(quantity < 1) {
-                quantity = 1;
-                $(this).val(quantity);
-            } else if(quantity > maxQuantity) {
-                quantity = maxQuantity;
-                $(this).val(quantity);
-                alert('La cantidad ingresada excede el máximo permitido de ' + maxQuantity + ' unidades.');
-            }
-
-            var total = quantity * price;
-
-            // Actualizar el precio del producto en la interfaz
-            $(this).closest('.d-sm-flex').find('.font-size-lg').text('$' + total.toFixed(2));
-
-            // Recalcular el subtotal
-            recalculateSubtotal();
+        // Calcular el subtotal
+        var subtotal = 0;
+        $('.quantity-input').each(function(){
+            var qty = $(this).val();
+            var prc = $(this).data('price');
+            subtotal += qty * prc;
         });
+        $('#subtotal').text('$' + subtotal.toFixed(2));
 
-        // Recalcular el subtotal al cargar la página
-        recalculateSubtotal();
-
+        // Enviar los datos al servidor mediante AJAX
         $.ajax({
-            url: 'ActualizarCarrito.php',
+            url: 'php/ActualizarCarrito.php',
             method: 'POST',
             data: {
                 index: index,
-                quantity: quantity,
-                total: total,
-                subtotal: subtotal
+                quantity: quantity
             },
             success: function(response) {
                 console.log(response); // Aquí puedes manejar la respuesta del servidor
+                var data = JSON.parse(response);
+                if(data.success) {
+                    $('#subtotal').text('$' + data.subtotal.toFixed(2));
+                } else {
+                    alert(data.message);
+                }
             }
         });
+    });
+
+    // Recalcular el subtotal al cargar la página
+    recalculateSubtotal();
+
+   
 
         $('#paymentMethod').change(function(){
             if ($(this).val() === 'tarjeta') {
