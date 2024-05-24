@@ -13,6 +13,7 @@ if (isset($_POST['index']) && isset($_POST['quantity'])) {
     $subtotal = 0;
     foreach ($_SESSION['Carrito'] as $item) {
         $subtotal += $item['Precio'] * $item['CantidadComprar'];
+        $item['SubtotalProducto'] = $item['Precio'] * $item['CantidadComprar'];;
     }
 
     // Guardar el subtotal en la sesión (opcional)

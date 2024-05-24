@@ -15,7 +15,7 @@
 <?php
 require_once 'vendor/autoload.php';
 
-include("php/ConfigGoogleApi.php.php");
+include("php/ConfigGoogleApi.php");
 // create Client Request to access Google API
 $client = new Google_Client();
 $client->setClientId($clientID);
@@ -34,6 +34,7 @@ if (isset($_GET['code'])) {
   $google_account_info = $google_oauth->userinfo->get();
   $email =  $google_account_info->email;
   $name =  $google_account_info->name;
+
 
   ?>
   <div class="container">

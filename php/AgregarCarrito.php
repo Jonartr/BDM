@@ -4,6 +4,7 @@ session_start();
 $Indice = $_POST['SetCar'];
 $producto = $_SESSION['Productos_show'][$Indice];
 $producto['CantidadComprar'] = 1;
+$producto['SubtotalProducto'] = 0;
 
 if(isset($_SESSION['Carrito'])){ 
   

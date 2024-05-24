@@ -43,11 +43,27 @@ $Indiceglobal;
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#"><?php echo $Carrito['Nombre'] ?></a></h3>
                         <!--<div class="font-size-sm"><span class="text-muted mr-2">Size:</span>8.5</div> -->
                         <div class="font-size-sm"><span class="text-muted mr-2"><?php echo $Carrito['Descripcion'] ?></span></div>
-                        <div class="font-size-lg text-primary pt-2">$<?php setlocale(LC_MONETARY,'es_MX');
-                              echo number_format($Carrito['Precio'] * $Carrito['CantidadComprar'],2);?></div>
+
+                        <div class="font-size-lg text-primary pt-2">Precio unitario: $ <?php setlocale(LC_MONETARY,'es_MX');
+                              echo number_format($Carrito['Precio'] ,2);
+                              $Carrito['SubtotalProducto'] = $Carrito['Precio'] * $Carrito['CantidadComprar'];
+                              ?>
                         </div>
-                        
+                      
+
+                        <div class="font-size-lg text-primary pt-2">Subtotal: $<?php setlocale(LC_MONETARY,'es_MX');
+                              echo number_format($Carrito['SubtotalProducto'],2);
+                              
+                              ?>
+                            
+                        </div>
+                                <?php $_SESSION['Carrito'][$i]['SubtotalProducto'] = $Carrito['SubtotalProducto']; ?>
+                        </div> 
+                       
                 </div>
+
+
+
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
                            <label for="quantity<?php echo $i; ?>">Cantidad</label>
@@ -130,7 +146,7 @@ $Indiceglobal;
             ?>
 
           
-                <div class="h3 font-weight-semibold text-center py-3" id="subtotal">$<?php echo number_format($_SESSION['Subtotal'], 2); ?></div>
+                <div class="h3 font-weight-semibold text-center py-3" id="subtotal">$<?php echo number_format($Subtotal, 2); ?></div>
 
 
             <hr>
@@ -190,7 +206,7 @@ $Indiceglobal;
                                                 <input type="text" class="form-control" id="postalCode">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary" id="proceedPayment">
+                                        <button type="submit" class="btn btn-primary" id="proceedPayment">
                                         <a href="php/NuevaVenta.php" class="text-decoration-none" style="color: white;"> Proceder al pago</a>    
                                        
                                         </button>
