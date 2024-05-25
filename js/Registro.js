@@ -47,7 +47,7 @@ formulario.addEventListener("submit", function(event){
 
         var okvalidator  = 0;
 
-        alert(jsonData);
+       
 
         if(email.value != null && image.value != null && name.value != null && dateb.value != null ){
             okvalidator++;
@@ -105,8 +105,3 @@ formulario.addEventListener("submit", function(event){
 });
 
 
-
-
-// function agregarDB(correo, usuario, contrasena,rol,imagen,nombre,fecha,sexo){
-
-//   }

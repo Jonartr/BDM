@@ -120,6 +120,22 @@ $Indiceglobal;
   <script src="https://www.paypal.com/sdk/js?client-id=AS6PFaPjFHGKhcNfFZMhbMSFoNj7R6iylaMzlq45wwewNVH4oJON4MOb5oqFdtQv_HiqDRCDIDdFv1ik&currency=MXN" data-sdk-integration-source="button-factory"></script>
   <script>
     function initPayPalButton() {
+
+        <?php
+            $Subtotalpaypal = 0;
+            if (isset($_SESSION['Subtotal'])){
+        ?>        
+
+        var subtotalPaypal = <?php echo $Subtotalpaypal; ?>; 
+       <?php        
+            }else{
+
+        ?>        
+              var subtotalPaypal =0; 
+        <?php        
+            }
+                ?>
+
       paypal.Buttons({
         style: {
           shape: 'rect',
@@ -131,7 +147,7 @@ $Indiceglobal;
 
         createOrder: function(data, actions) {
           return actions.order.create({
-            purchase_units: [{"description":"monas perronas","amount":{"currency_code":"MXN","value":<?php echo $_SESSION['Subtotal']?>}}]
+            purchase_units: [{"description":"monas perronas","amount":{"currency_code":"MXN","value":50.00}}]
           });
         },
 
@@ -141,7 +157,7 @@ $Indiceglobal;
             // Full available details
             console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
  
-actions.redirect('http://localhost/BDM/php/NuevaVenta.php');
+actions.redirect('http://localhost/BDM/confirmaCompra.php');
             
           });
         },

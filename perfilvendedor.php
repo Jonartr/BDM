@@ -114,29 +114,10 @@
                 </div>
               </div>
               </div>
-          
-            
 
-
-
-
-
-
-
-              <!--  <div class="container-fluid p-0 mb-3">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Lista:_</i>Favoritos</h6>
-                     
-                -->
 
                 <?php
-// Definir la variable $productos con algunos datos de ejemplo
-$productos = array(
-    array("nombre" => "Producto 1", "imagen" => "img/AirTag.png", "descripcion" => "Descripción del producto 1"),
-  
-    // Agrega más productos según sea necesario
-);
+
 ?>
 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Lista:_</i>Ventas</h6>
 <!-- Agregar el div del carousel con Bootstrap -->
@@ -145,7 +126,8 @@ $productos = array(
     <!-- Cada elemento de carousel-item contendrá un conjunto de productos -->
     <?php 
     // Aquí deberías insertar un loop de PHP para iterar sobre tus productos
-    $total_productos = count($productos);
+    $total_productos = count($_SESSION['Ventas']);
+
     $productos_por_slide = 5; // Número de productos por slide
     $slides = ceil($total_productos / $productos_por_slide);
 
@@ -159,92 +141,25 @@ $productos = array(
           <?php 
           $inicio = $i * $productos_por_slide;
           $fin = min(($i + 1) * $productos_por_slide, $total_productos);
-          for ($j = $inicio; $j < $fin; $j++) {
+          for ($j = 0; $j < $total_productos; $j++) {
+
+            $Venta = $_SESSION['Ventas'][$j]
           ?>
           <!-- Tarjeta del producto -->
           <div class="col-md-2 mb-3">
             <div class="card h-100">
               <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
+              <img src="img/<?php echo $Venta['Imagen']; ?>" class="card-img card-img-top" alt="<?php echo $Venta['Codigo']; ?>">
               <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
+                <h5 class="card-title">Codigo producto: <?php echo $Venta['Codigo']; ?></h5>
+                <p class="card-text">Cantidad Vendida: <?php echo $Venta['CantidadVenta']; ?></p>
+                <p class="card-text">Total Venta: $<?php echo $Venta['TotalVenta']; ?></p>
+                <p class="card-text">Fecha Venta: <?php echo $Venta['FechaVenta']; ?></p>
                 <!-- Agrega aquí los detalles adicionales del producto como el precio -->
               </div>
             </div>
           </div>
-           <!-- Tarjeta del producto -->
-           <div class="col-md-2 mb-3">
-            <div class="card h-100">
-              <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
-                <!-- Agrega aquí los detalles adicionales del producto como el precio -->
-              </div>
-            </div>
-          </div>
-           <!-- Tarjeta del producto -->
-           <div class="col-md-2 mb-3">
-            <div class="card h-100">
-              <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
-                <!-- Agrega aquí los detalles adicionales del producto como el precio -->
-              </div>
-            </div>
-          </div>
-           <!-- Tarjeta del producto -->
-           <div class="col-md-2 mb-3">
-            <div class="card h-100">
-              <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
-                <!-- Agrega aquí los detalles adicionales del producto como el precio -->
-              </div>
-            </div>
-          </div>
-           <!-- Tarjeta del producto -->
-           <div class="col-md-2 mb-3">
-            <div class="card h-100">
-              <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
-                <!-- Agrega aquí los detalles adicionales del producto como el precio -->
-              </div>
-            </div>
-          </div>
-           <!-- Tarjeta del producto -->
-           <div class="col-md-2 mb-3">
-            <div class="card h-100">
-              <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
-                <!-- Agrega aquí los detalles adicionales del producto como el precio -->
-              </div>
-            </div>
-          </div>
-           <!-- Tarjeta del producto -->
-           <div class="col-md-2 mb-3">
-            <div class="card h-100">
-              <!-- Contenido del producto -->
-              <img src="<?php echo $productos[$j]['imagen']; ?>" class="card-img card-img-top" alt="<?php echo $productos[$j]['nombre']; ?>">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $productos[$j]['nombre']; ?></h5>
-                <p class="card-text"><?php echo $productos[$j]['descripcion']; ?></p>
-                <!-- Agrega aquí los detalles adicionales del producto como el precio -->
-              </div>
-            </div>
-          </div>
+      
           <?php
           }
           ?>
@@ -268,20 +183,6 @@ $productos = array(
 
 
 
-    
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-
-                  </div>
-                </div>
-               </div>
-        
           
 
 <!-- Script para reiniciar el carousel al llegar al último item -->

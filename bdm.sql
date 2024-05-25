@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2024 a las 05:02:12
+-- Tiempo de generación: 25-05-2024 a las 09:36:58
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -127,6 +127,23 @@ END IF;
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertarVenta` (IN `_CantidadVenta` DOUBLE, IN `_TotalVenta` DOUBLE, IN `_Categoria` INT, IN `_Codigo` INT, IN `_Correo` VARCHAR(100), IN `_Comprador` VARCHAR(100), IN `_Nombre` VARCHAR(100), IN `_Precio` DOUBLE, IN `_TotalProducto` DOUBLE)   BEGIN
+
+INSERT INTO venta (FechaVenta, CantidadVenta, TotalVenta, IDCat, Codigo, Correo, Comprador) VALUES (NOW(), _CantidadVenta, _TotalVenta,_Categoria ,_Codigo, _Correo, _Comprador);
+
+
+INSERT INTO Historial (Codigo, Nombre, Precio, CantidadComprada, Total, FechaCompra, Usuario)
+VALUES(_Codigo, _Nombre,_Precio,_CantidadVenta, _TotalProducto, NOW(),_Comprador);
+
+UPDATE Historial 
+SET Imagen = (SELECT Imagen_1 FROM producto WHERE Codigo = _Codigo)
+WHERE Codigo = _Codigo;
+
+
+UPDATE venta SET Imagen = (SELECT Imagen_1 FROM producto WHERE Codigo = _Codigo) WHERE Codigo = _Codigo;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Mensajeria` (IN `_Mensaje` TEXT, IN `_Remitente` VARCHAR(100), IN `_Emisor` VARCHAR(100), IN `_Codigo` INT)   BEGIN
 
 INSERT INTO Chat(Mensaje, Emisor, Remitente, Fecha, Codigo) VALUES (_Mensaje, _Remitente, _Emisor, now(), _Codigo);
@@ -170,7 +187,9 @@ CREATE TABLE `categorias` (
 INSERT INTO `categorias` (`ID_Cat`, `Nombre`, `Descripcion`, `Correo`) VALUES
 (2, 'Mangas', 'Comics japoneses onichan uwu', 'rickijtr@hotmail.com'),
 (4, 'Electronica', 'Productos tecnologicos', 'rickijtr@hotmail.com'),
-(6, 'Alola', 'adaadasdas', 'rickijtr@hotmail.com');
+(6, 'Alola', 'adaadasdas', 'rickijtr@hotmail.com'),
+(7, 'Videojuegos', 'Videojuegos que me gustan ', 'rickimd54@gmail.com'),
+(8, 'Ropa', 'Vestimenta', 'rickimd54@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -196,7 +215,9 @@ INSERT INTO `chat` (`IDChat`, `Mensaje`, `Fecha`, `Emisor`, `Remitente`, `Codigo
 (7, 'Aloha', '2024-05-21 16:20:36', 'rickimd54@gmail.com', 'rickijtr@hotmail.com', 14),
 (8, 'Quibo', '2024-05-21 16:23:05', 'rickimd54@gmail.com', 'rickijtr@hotmail.com', 14),
 (9, 'Quibo', '2024-05-21 16:23:13', 'rickimd54@gmail.com', 'rickijtr@hotmail.com', 14),
-(10, 'Llora y llora y mueve sus manitas', '2024-05-21 17:09:55', 'rickimd54@gmail.com', 'rickijtr@hotmail.com', 14);
+(10, 'Llora y llora y mueve sus manitas', '2024-05-21 17:09:55', 'rickimd54@gmail.com', 'rickijtr@hotmail.com', 14),
+(11, 'America ya :D', '2024-05-21 21:23:31', 'rickimd54@gmail.com', 'rickijtr@hotmail.com', 14),
+(12, 'Hallo :D', '2024-05-21 22:28:22', 'rickijtr@hotmail.com', 'rickimd54@gmail.com', 14);
 
 -- --------------------------------------------------------
 
@@ -221,6 +242,7 @@ CREATE TABLE `comentarios` (
 CREATE TABLE `cotizacion` (
   `ID_Coty` int(11) NOT NULL,
   `Usuario` varchar(100) DEFAULT NULL,
+  `Comprador` varchar(100) NOT NULL,
   `Codigo` int(11) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
   `Detalles` text DEFAULT NULL,
@@ -248,7 +270,8 @@ CREATE TABLE `datospersonales` (
 
 INSERT INTO `datospersonales` (`IDPersona`, `Nombre`, `FechaNacimiento`, `Sexo`, `Correo`) VALUES
 (2, 'Jonathan Torres', '2024-03-31', 1, 'rickijtr@hotmail.com'),
-(12, 'Jorge Salas', '1999-05-05', 1, 'rickimd54@gmail.com');
+(12, 'Jorge Salas', '1999-05-05', 1, 'rickimd54@gmail.com'),
+(14, 'Ricardo Rivera', '1999-07-04', 1, 'hola@hola.com');
 
 -- --------------------------------------------------------
 
@@ -260,12 +283,30 @@ CREATE TABLE `historial` (
   `ID_Historial` int(11) NOT NULL,
   `Codigo` int(11) DEFAULT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
+  `Imagen` mediumblob NOT NULL,
   `Precio` float DEFAULT NULL,
   `CantidadComprada` int(11) DEFAULT NULL,
   `Calificacion` int(11) NOT NULL,
   `Total` float DEFAULT NULL,
-  `FechaCompra` date DEFAULT NULL
+  `FechaCompra` datetime DEFAULT NULL,
+  `Usuario` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`ID_Historial`, `Codigo`, `Nombre`, `Imagen`, `Precio`, `CantidadComprada`, `Calificacion`, `Total`, `FechaCompra`, `Usuario`) VALUES
+(1, 2, 'Monas chinas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 19.99, 3, 0, 779.97, '2024-05-24 21:49:10', 'rickijtr@hotmail.com'),
+(2, 6, 'Magas', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 180, 4, 0, 779.97, '2024-05-24 21:49:10', 'rickijtr@hotmail.com'),
+(7, 2, 'Monas chinas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 19.99, 3, 0, 0, '2024-05-24 21:49:10', 'rickimd54@gmail.com'),
+(8, 2, 'Monas chinas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 19.99, 3, 0, 0, '2024-05-24 21:49:10', 'rickimd54@gmail.com'),
+(9, 2, 'Monas chinas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 19.99, 1, 0, 19.99, '2024-05-24 21:49:10', 'rickimd54@gmail.com'),
+(15, 6, 'Magas', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 180, 3, 0, 540, '2024-05-24 22:08:04', 'rickimd54@gmail.com'),
+(16, 6, 'Magas', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 180, 3, 0, 180, '2024-05-24 00:00:00', 'rickimd54@gmail.com'),
+(20, 6, 'Magas', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 180, 2, 0, 180, '2024-05-25 00:35:56', 'rickimd54@gmail.com'),
+(21, 6, 'Magas', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 180, 2, 0, 180, '2024-05-25 00:58:13', 'rickimd54@gmail.com'),
+(22, 2, 'Monas chinas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 19.99, 3, 0, 59.97, '2024-05-25 01:00:59', 'rickimd54@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -320,10 +361,10 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`Codigo`, `Nombre`, `Descripcion`, `Imagen_1`, `Imagen_2`, `Imagen_3`, `Video`, `TipoVenta`, `Precio`, `Existencias`, `Valoracion`, `Categoria`, `Lista`, `Estatus`, `Aprobacion`, `Usuario`) VALUES
-(2, 'Monas chinas', 'Monas japonesas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 0x3237393139333237335f313032303239343438383630313130365f323234333135393137343936373834333037335f6e2e6a7067, 0x3330353132313932355f323031383838353139343936353630355f373132373039363239353533363635393237305f6e2e6a7067, 0x5175652c207175652c7175652c207175652c20766572676173c2a1c2a1204e616e695f204d656d652048442d31303830705f36306670732e6d7034, 1, 19.99, 60, 0, 2, 2, 1, 1, 'rickijtr@hotmail.com'),
-(6, 'Magas', 'Pues magas que mas jsjsjs', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 0x3331303830393535385f3737383736333935333431333532335f373036383430353238383031393735313432365f6e2e6a7067, 0x3332353936343937345f3837333138383132303539313632375f323035333635313639323933373535383638365f6e2e6a7067, 0x766964656f706c61796261636b2e6d7034, 1, 180, 60, 0, 4, 0, 1, 1, 'rickijtr@hotmail.com'),
-(13, 'Taranis', 'Tanque con niños furros y un cañon que mata a quien pongas como sacrificio', 0x46554741325f45786f2d546172616e69732e6a7067, 0x696d616765732e6a7067, 0x546172616e69732e6a7067, 0x536f756c2043616e6e6f6e2026204d616e616761726d202d2053797374656d202346756761322023467567614d656c6f646965734f66537465656c322e6d7034, 1, 20000, 1, 0, 4, 0, 1, 1, 'rickijtr@hotmail.com'),
-(14, 'Producto shido', 'Shido', 0x3334313039363436385f3935333436323834363030393734395f3633333136313033393031343939313431315f6e2e6a7067, 0x3237333138303238355f3635373438323731353637343634375f383839393334363335333231363538393239375f6e2e6a7067, 0x3238313235333632375f31303232363833323032383439373338385f353937353639323630373935353137323434335f6e2e6a7067, 0x466f72746e697465202020323032332d31322d32362032322d32372d34352e6d7034, 2, 150, 30, 0, 2, 0, 1, 0, 'rickijtr@hotmail.com');
+(2, 'Monas chinas', 'Monas japonesas', 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 0x3237393139333237335f313032303239343438383630313130365f323234333135393137343936373834333037335f6e2e6a7067, 0x3330353132313932355f323031383838353139343936353630355f373132373039363239353533363635393237305f6e2e6a7067, 0x5175652c207175652c7175652c207175652c20766572676173c2a1c2a1204e616e695f204d656d652048442d31303830705f36306670732e6d7034, 1, 19.99, 41, 0, 2, 2, 1, 1, 'rickijtr@hotmail.com'),
+(6, 'Magas', 'Pues magas que mas jsjsjs', 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 0x3331303830393535385f3737383736333935333431333532335f373036383430353238383031393735313432365f6e2e6a7067, 0x3332353936343937345f3837333138383132303539313632375f323035333635313639323933373535383638365f6e2e6a7067, 0x766964656f706c61796261636b2e6d7034, 1, 180, 46, 0, 4, 0, 1, 1, 'rickijtr@hotmail.com'),
+(13, 'Taranis', 'Tanque con niños furros y un cañon que mata a quien pongas como sacrificio', 0x46554741325f45786f2d546172616e69732e6a7067, 0x696d616765732e6a7067, 0x546172616e69732e6a7067, 0x536f756c2043616e6e6f6e2026204d616e616761726d202d2053797374656d202346756761322023467567614d656c6f646965734f66537465656c322e6d7034, 1, 20000, 100, 0, 4, 0, 1, 1, 'rickijtr@hotmail.com'),
+(14, 'Producto shido', 'Shido', 0x3334313039363436385f3935333436323834363030393734395f3633333136313033393031343939313431315f6e2e6a7067, 0x3237333138303238355f3635373438323731353637343634375f383839393334363335333231363538393239375f6e2e6a7067, 0x3238313235333632375f31303232363833323032383439373338385f353937353639323630373935353137323434335f6e2e6a7067, 0x466f72746e697465202020323032332d31322d32362032322d32372d34352e6d7034, 2, 150, 30, 0, 2, 0, 1, 1, 'rickijtr@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -369,8 +410,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Correo`, `NombreUsuario`, `Contrasena`, `Rol`, `Imagen`, `FechaRegistro`, `FechaBaja`, `Estatus`, `Privacidad`) VALUES
-('rickijtr@hotmail.com', 'Geno', 'Hola1234**', 2, 0x09f6a47a96ad878df8d75f35e37efbdb7db4ef5e3bef4dfaf34e79d3ce7dd79e76e7aef8efbefcea78e9, '2024-04-21 23:50:21', NULL, 1, 1),
-('rickimd54@gmail.com', 'Skadi', 'Hola1234**', 1, 0x363634633530303337383862632e6a7067, '2024-05-21 01:40:51', NULL, 1, 1);
+('hola@hola.com', 'Wiwichi', 'Adios5678**', 3, 0x363635313831343338386635382e6a7067, '2024-05-25 00:12:19', NULL, 1, 1),
+('rickijtr@hotmail.com', 'Geno', 'Hola1234**', 1, 0x3331303830393535385f3737383736333935333431333532335f373036383430353238383031393735313432365f6e2e6a7067, '2024-04-21 23:50:21', NULL, 1, 1),
+('rickimd54@gmail.com', 'Skadi', 'Hola1234**', 2, 0x363634633530303337383862632e6a7067, '2024-05-21 01:40:51', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -383,10 +425,50 @@ CREATE TABLE `venta` (
   `FechaVenta` datetime DEFAULT NULL COMMENT 'Dia de la venta de los productos',
   `CantidadVenta` int(11) DEFAULT NULL COMMENT 'Total de productos vendidos',
   `TotalVenta` float DEFAULT NULL COMMENT 'Precio del total de la venta',
+  `Imagen` mediumblob NOT NULL,
   `IDCat` int(11) DEFAULT NULL COMMENT 'Categoria creada por usuario',
   `Codigo` int(11) DEFAULT NULL COMMENT 'Codigo del producto',
-  `Correo` varchar(100) DEFAULT NULL COMMENT 'Usuario que efectuo la venta'
+  `Correo` varchar(100) DEFAULT NULL COMMENT 'Vendedor',
+  `Comprador` varchar(100) NOT NULL COMMENT 'Cliente que compro'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`IDVenta`, `FechaVenta`, `CantidadVenta`, `TotalVenta`, `Imagen`, `IDCat`, `Codigo`, `Correo`, `Comprador`) VALUES
+(1, '2024-05-22 12:25:52', 3, 599.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', ''),
+(2, '2024-05-22 12:25:52', 3, 599.97, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', ''),
+(3, '2024-05-22 12:48:49', 3, 779.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', ''),
+(4, '2024-05-22 12:48:49', 4, 779.97, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', ''),
+(7, '2024-05-22 13:17:06', 3, 779.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', ''),
+(8, '2024-05-22 13:17:06', 4, 779.97, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', ''),
+(14, '2024-05-24 13:22:44', 3, 59.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', ''),
+(15, '2024-05-24 15:40:47', 3, 59.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(16, '2024-05-24 15:41:13', 3, 59.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(17, '2024-05-24 15:57:52', 3, 59.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(18, '2024-05-24 16:04:42', 1, 59.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(19, '2024-05-24 22:08:04', 3, 540, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(20, '2024-05-24 22:52:29', 3, 540, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(21, '2024-05-24 23:25:18', 3, 599.97, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(22, '2024-05-24 23:25:19', 3, 599.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(23, '2024-05-24 23:27:18', 1, 599.97, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(24, '2024-05-25 00:35:56', 2, 360, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(25, '2024-05-25 00:58:13', 2, 360, 0x3433343131383134335f373732333230373134373730333638305f353530383539313535323536373437373738365f6e2e6a7067, 4, 6, 'rickijtr@hotmail.com', 'rickimd54@gmail.com'),
+(26, '2024-05-25 01:00:59', 3, 59.97, 0x39643237636438312d633831352d346165622d386235352d3164663236643565363361652e6a7067, 2, 2, 'rickijtr@hotmail.com', 'rickimd54@gmail.com');
+
+--
+-- Disparadores `venta`
+--
+DELIMITER $$
+CREATE TRIGGER `ActualizarExistencia` AFTER INSERT ON `venta` FOR EACH ROW BEGIN
+    -- Actualizar la cantidad de existencias en la tabla de productos
+    UPDATE producto
+    SET Existencias = Existencias - NEW.CantidadVenta
+    WHERE Codigo = NEW.Codigo;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -452,7 +534,8 @@ ALTER TABLE `comentarios`
 ALTER TABLE `cotizacion`
   ADD PRIMARY KEY (`ID_Coty`),
   ADD KEY `Codigo` (`Codigo`),
-  ADD KEY `Usuario` (`Usuario`);
+  ADD KEY `Usuario` (`Usuario`),
+  ADD KEY `Comprador` (`Comprador`);
 
 --
 -- Indices de la tabla `datospersonales`
@@ -466,7 +549,8 @@ ALTER TABLE `datospersonales`
 --
 ALTER TABLE `historial`
   ADD PRIMARY KEY (`ID_Historial`),
-  ADD KEY `Codigo` (`Codigo`);
+  ADD KEY `Codigo` (`Codigo`),
+  ADD KEY `Usuario` (`Usuario`);
 
 --
 -- Indices de la tabla `listas`
@@ -513,13 +597,13 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `ID_Cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Cat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `IDChat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `IDChat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `comentarios`
@@ -537,13 +621,13 @@ ALTER TABLE `cotizacion`
 -- AUTO_INCREMENT de la tabla `datospersonales`
 --
 ALTER TABLE `datospersonales`
-  MODIFY `IDPersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IDPersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `ID_Historial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `listas`
@@ -567,7 +651,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `IDVenta` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificacion numero de venta';
+  MODIFY `IDVenta` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificacion numero de venta', AUTO_INCREMENT=27;
 
 --
 -- Restricciones para tablas volcadas
@@ -598,7 +682,8 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `cotizacion`
   ADD CONSTRAINT `cotizacion_ibfk_1` FOREIGN KEY (`Codigo`) REFERENCES `producto` (`Codigo`),
-  ADD CONSTRAINT `cotizacion_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Correo`);
+  ADD CONSTRAINT `cotizacion_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Correo`),
+  ADD CONSTRAINT `cotizacion_ibfk_3` FOREIGN KEY (`Comprador`) REFERENCES `usuarios` (`Correo`);
 
 --
 -- Filtros para la tabla `datospersonales`
@@ -610,7 +695,8 @@ ALTER TABLE `datospersonales`
 -- Filtros para la tabla `historial`
 --
 ALTER TABLE `historial`
-  ADD CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`Codigo`) REFERENCES `producto` (`Codigo`);
+  ADD CONSTRAINT `historial_ibfk_1` FOREIGN KEY (`Codigo`) REFERENCES `producto` (`Codigo`),
+  ADD CONSTRAINT `historial_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`Correo`);
 
 --
 -- Filtros para la tabla `listas`

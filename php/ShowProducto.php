@@ -11,8 +11,8 @@ if($conexion->connect_error){
 
 }
 
-
-$Query = "SELECT * FROM producto";
+ 
+$Query = "SELECT * FROM producto WHERE Estatus = 1 AND Aprobacion = 1";
 
 $result = $conexion->query($Query);
 
