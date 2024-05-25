@@ -79,7 +79,7 @@
                         <div>
 
                         <?php 
-                            if($Producto['TipoVenta'] == 1){ ?>            
+                            if($Producto['TipoVenta'] == 1 && $_SESSION['Rol'] == 2){ ?>            
                                 <option value = "<?php $PSelect = $i; ?>"></option>
                                         <button class = "btn btn-primary mx-5 my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Agregar a lista
@@ -92,9 +92,9 @@
                                         </button>
                                     </form>
 
-                            <?php 
+                        <?php 
                             }
-                            else{
+                            else if ($Producto['TipoVenta'] == 1 && $_SESSION['Rol'] == 2){
 
                             ?>   
                                 <option value = "<?php $PCotizar = $i; ?>"></option>
