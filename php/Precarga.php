@@ -5,6 +5,8 @@ require_once("GetProducto.php");
 require_once("GetCat.php");
 require_once("GetLista.php");
 require_once("ShowProducto.php");
+require_once("Historial.php");
+require_once("ReporteVentas.php");
 
 
 
