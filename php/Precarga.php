@@ -9,13 +9,7 @@ require_once("Historial.php");
 require_once("ReporteVentas.php");
 
 
-
-if ($_SESSION['RedirigirProducto']== true){
-    header("location: ../productos.php");
-}
-else{
-    header("location: ../inicio.php");
-}
+header("location: ../inicio.php");
 
 
 

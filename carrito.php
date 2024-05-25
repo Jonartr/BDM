@@ -167,7 +167,7 @@ $Indiceglobal;
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="paymentForm">
+                                    <form id="paymentForm" method ="post">
                                         <div class="mb-3">
                                             <label for="paymentMethod" class="form-label">Método de Pago</label>
                                             <select class="form-select" id="paymentMethod">
@@ -206,7 +206,7 @@ $Indiceglobal;
                                                 <input type="text" class="form-control" id="postalCode">
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary" id="proceedPayment">
+                                        <button type="button" class="btn btn-primary" id="proceedPayment">
                                         <a href="php/NuevaVenta.php" class="text-decoration-none" style="color: white;"> Proceder al pago</a>    
                                        
                                         </button>

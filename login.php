@@ -34,19 +34,22 @@ if (isset($_GET['code'])) {
   $google_account_info = $google_oauth->userinfo->get();
   $email =  $google_account_info->email;
   $name =  $google_account_info->name;
+  $picture = $google_account_info->picture;
+  //$gener = $google_account_info->da;
+  
 
-
+  $_SESSION['Correo'] = $email;
+  $_SESSION['Foto'] = $picture;
+  $_SESSION['Nombre'] = $name;
+  $_SESSION['Rol'] = 2;
+  $_SESSION['Usuario'] = $name;
+  $_SESSION['Privacidad'] = 1;
+  $_SESSION['Sexo'] = "Privado";
+  $_SESSION['Fecha'] = "Privado";
+  
+  header('location: php/Precarga.php');
   ?>
-  <div class="container">
-  <div class="box">
 
-    <div class="form-group">
-      <label for="email" class="form-label">Emailid: <?php echo $email; ?></label>
-      <label for="name" class="form-label">Name: <?php echo $name; ?></label>    </div>
-</div>
-
-</div>
-</div>
 
 <?php } else {?>
   
