@@ -21,7 +21,7 @@
 
 <h1>Gracias por tu compra!</h1>
 <img src="img/Rico-Mc-Pato-en-dinero-1200x600.jpg" alt="">
-<h4>Haz clic <a href="inicio.php">Aqui</a> para regresar a inicio</h4>
+<h4>Haz clic <a href="php/Precarga.php">Aqui</a> para regresar a inicio</h4>
 <div>
 
 

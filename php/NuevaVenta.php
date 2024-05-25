@@ -14,7 +14,7 @@ if ($conexion->connect_error) {
         $CarritoTotal = $_SESSION['Carrito'];
         $Total = $_SESSION['Subtotal'];
 
-        $Query = $conexion->prepare("CALL InsertarVenta(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        $Query = $conexion->prepare("CALL InsertarVenta(?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
         foreach ($_SESSION['Carrito'] as $item) {
             $CantidadVenta = $item['CantidadComprar'];
@@ -26,9 +26,9 @@ if ($conexion->connect_error) {
             $Nombre = $item['Nombre'];
             $Precio = $item['Precio'];
             $TotalProducto = $item['SubtotalProducto'];
-            $Imagen = addslashes($item['Imagen_1']);
+    
 
-            $Query->bind_param("ddiisssddb", $CantidadVenta, $TotalVenta, $Categoria, $Codigo, $Correo,$Comprador,$Nombre,$Precio,$TotalProducto,  $Imagen);
+            $Query->bind_param("ddiisssdd", $CantidadVenta, $TotalVenta, $Categoria, $Codigo, $Correo,$Comprador,$Nombre,$Precio,$TotalProducto);
             $Query->execute();
         }
 
